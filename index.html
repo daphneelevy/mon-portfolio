@@ -1,0 +1,441 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Daphnée — Script & Production</title>
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet" />
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    :root {
+      --noir: #080808; --charbon: #111111; --cendre: #1c1c1c;
+      --gris: #3a3a3a; --brume: #888; --ivoire: #e8e0d0;
+      --or: #c8a96e; --or-pale: #e2c98a; --blanc: #f5f0e8;
+    }
+    html { scroll-behavior: smooth; }
+    body {
+      background: var(--noir); color: var(--ivoire);
+      font-family: 'Cormorant Garamond', Georgia, serif;
+      font-size: 18px; line-height: 1.7;
+      cursor: none; overflow-x: hidden;
+    }
+    .cursor {
+      position: fixed; width: 10px; height: 10px; background: var(--or);
+      border-radius: 50%; pointer-events: none; z-index: 9999;
+      transform: translate(-50%, -50%);
+      transition: width 0.2s, height 0.2s; mix-blend-mode: difference;
+    }
+    .cursor-ring {
+      position: fixed; width: 38px; height: 38px; border: 1px solid var(--or);
+      border-radius: 50%; pointer-events: none; z-index: 9998;
+      transform: translate(-50%, -50%); transition: opacity 0.3s; opacity: 0.5;
+    }
+    body::before {
+      content: ''; position: fixed; inset: 0; pointer-events: none; z-index: 9990;
+      background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.04'/%3E%3C/svg%3E");
+      background-size: 200px; opacity: 0.4;
+    }
+    nav {
+      position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+      display: flex; justify-content: space-between; align-items: center;
+      padding: 2rem 4rem;
+    }
+    nav::after {
+      content: ''; position: absolute; bottom: 0; left: 4rem; right: 4rem;
+      height: 1px; background: linear-gradient(90deg, transparent, var(--gris), transparent);
+    }
+    .nav-logo {
+      font-family: 'Cormorant Garamond', serif; font-style: italic; font-size: 1.1rem;
+      color: var(--or); letter-spacing: 0.05em; text-decoration: none;
+    }
+    .nav-links { display: flex; gap: 3rem; list-style: none; }
+    .nav-links a {
+      font-family: 'Space Mono', monospace; font-size: 0.65rem;
+      letter-spacing: 0.2em; text-transform: uppercase; color: var(--brume);
+      text-decoration: none; transition: color 0.3s;
+    }
+    .nav-links a:hover { color: var(--ivoire); }
+
+    .hero {
+      min-height: 100vh; display: flex; flex-direction: column;
+      justify-content: flex-end; padding: 0 4rem 8rem; position: relative; overflow: hidden;
+    }
+    .hero-bg {
+      position: absolute; inset: 0;
+      background: radial-gradient(ellipse 60% 70% at 70% 30%, rgba(200,169,110,0.07) 0%, transparent 70%),
+                  radial-gradient(ellipse 40% 50% at 20% 80%, rgba(200,169,110,0.04) 0%, transparent 60%);
+    }
+    .hero-line {
+      position: absolute; top: 0; bottom: 0; left: 55%; width: 1px;
+      background: linear-gradient(180deg, transparent 0%, var(--gris) 30%, var(--gris) 70%, transparent 100%);
+      opacity: 0.3;
+    }
+    .hero-counter {
+      font-family: 'Space Mono', monospace; font-size: 0.6rem;
+      letter-spacing: 0.3em; color: var(--or); margin-bottom: 3rem;
+      opacity: 0; animation: fadeUp 1s 0.3s forwards;
+    }
+    .hero-title {
+      font-size: clamp(4rem, 10vw, 9rem); font-weight: 300;
+      line-height: 0.9; letter-spacing: -0.02em; color: var(--blanc);
+      max-width: 14ch; opacity: 0; animation: fadeUp 1.2s 0.5s forwards;
+    }
+    .hero-title em { font-style: italic; color: var(--or); }
+    .hero-sub {
+      font-family: 'Space Mono', monospace; font-size: 0.7rem;
+      letter-spacing: 0.25em; text-transform: uppercase; color: var(--brume);
+      margin-top: 2.5rem; opacity: 0; animation: fadeUp 1s 0.9s forwards;
+    }
+    .hero-scroll {
+      position: absolute; right: 4rem; bottom: 6rem;
+      display: flex; flex-direction: column; align-items: center; gap: 0.8rem;
+      opacity: 0; animation: fadeIn 1s 1.5s forwards;
+    }
+    .hero-scroll span {
+      font-family: 'Space Mono', monospace; font-size: 0.55rem;
+      letter-spacing: 0.3em; text-transform: uppercase; color: var(--brume);
+      writing-mode: vertical-rl;
+    }
+    .scroll-line {
+      width: 1px; height: 80px;
+      background: linear-gradient(180deg, var(--or), transparent);
+      animation: scrollPulse 2s ease-in-out infinite;
+    }
+
+    section { padding: 10rem 4rem; position: relative; }
+    .section-label {
+      font-family: 'Space Mono', monospace; font-size: 0.6rem;
+      letter-spacing: 0.35em; text-transform: uppercase; color: var(--or);
+      margin-bottom: 4rem; display: flex; align-items: center; gap: 1.5rem;
+    }
+    .section-label::after {
+      content: ''; flex: 1; max-width: 80px; height: 1px; background: var(--gris);
+    }
+
+    .about-grid { display: grid; grid-template-columns: 1fr 1.4fr; gap: 8rem; align-items: start; }
+    .about-portrait { aspect-ratio: 3/4; background: var(--cendre); position: relative; overflow: hidden; }
+    .about-portrait::before {
+      content: ''; position: absolute; inset: 0;
+      background: linear-gradient(135deg, rgba(200,169,110,0.1) 0%, transparent 60%);
+    }
+    .portrait-placeholder {
+      width: 100%; height: 100%; display: flex; flex-direction: column;
+      align-items: center; justify-content: center; gap: 1rem; color: var(--gris);
+    }
+    .portrait-placeholder svg { opacity: 0.4; }
+    .portrait-placeholder p {
+      font-family: 'Space Mono', monospace; font-size: 0.6rem;
+      letter-spacing: 0.2em; text-transform: uppercase;
+    }
+    .about-frame {
+      position: absolute; top: 1.5rem; right: -1.5rem;
+      width: 100%; height: 100%; border: 1px solid var(--gris); pointer-events: none;
+    }
+    .about-text h2 {
+      font-size: clamp(2.5rem, 5vw, 4rem); font-weight: 300;
+      line-height: 1.1; margin-bottom: 2rem; color: var(--blanc);
+    }
+    .about-text h2 em { font-style: italic; color: var(--or); }
+    .about-text p { color: var(--brume); font-size: 1.05rem; margin-bottom: 1.5rem; line-height: 1.8; }
+    .about-text p strong { color: var(--ivoire); font-weight: 400; }
+    .about-stats {
+      display: grid; grid-template-columns: repeat(3, 1fr); gap: 2rem;
+      margin-top: 3.5rem; padding-top: 3rem; border-top: 1px solid var(--cendre);
+    }
+    .stat-num { font-size: 2.8rem; font-weight: 300; color: var(--or); line-height: 1; }
+    .stat-label {
+      font-family: 'Space Mono', monospace; font-size: 0.6rem;
+      letter-spacing: 0.2em; text-transform: uppercase; color: var(--brume); margin-top: 0.5rem;
+    }
+
+    #experiences { background: var(--charbon); }
+    .exp-list { max-width: 900px; }
+    .exp-item {
+      display: grid; grid-template-columns: 180px 1fr; gap: 3rem;
+      padding: 3rem 0; border-bottom: 1px solid var(--cendre); transition: all 0.3s;
+    }
+    .exp-item:first-of-type { border-top: 1px solid var(--cendre); }
+    .exp-item:hover .exp-title { color: var(--or); }
+    .exp-meta { text-align: right; padding-top: 0.3rem; }
+    .exp-year { font-family: 'Space Mono', monospace; font-size: 0.7rem; color: var(--or); letter-spacing: 0.1em; }
+    .exp-type {
+      font-family: 'Space Mono', monospace; font-size: 0.55rem;
+      letter-spacing: 0.2em; text-transform: uppercase; color: var(--gris); margin-top: 0.5rem;
+    }
+    .exp-title { font-size: 1.6rem; font-weight: 300; color: var(--blanc); margin-bottom: 0.5rem; transition: color 0.3s; }
+    .exp-role { font-style: italic; color: var(--or); font-size: 1rem; margin-bottom: 0.8rem; }
+    .exp-desc { color: var(--brume); font-size: 0.95rem; line-height: 1.7; }
+
+    .skills-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 3px; max-width: 1000px; }
+    .skill-card {
+      background: var(--charbon); padding: 2.5rem; position: relative;
+      overflow: hidden; transition: background 0.3s;
+    }
+    .skill-card:hover { background: var(--cendre); }
+    .skill-card::before {
+      content: ''; position: absolute; top: 0; left: 0;
+      width: 3px; height: 0; background: var(--or); transition: height 0.4s;
+    }
+    .skill-card:hover::before { height: 100%; }
+    .skill-icon { font-size: 1.8rem; margin-bottom: 1.2rem; display: block; }
+    .skill-name { font-size: 1.1rem; font-weight: 600; color: var(--blanc); margin-bottom: 0.8rem; }
+    .skill-items { list-style: none; }
+    .skill-items li {
+      font-family: 'Space Mono', monospace; font-size: 0.6rem;
+      letter-spacing: 0.1em; text-transform: uppercase; color: var(--brume);
+      padding: 0.3rem 0; border-bottom: 1px solid var(--cendre);
+    }
+    .skill-items li:last-child { border: none; }
+
+    #contact { background: var(--charbon); }
+    .contact-inner { max-width: 700px; }
+    .contact-inner h2 {
+      font-size: clamp(3rem, 6vw, 5.5rem); font-weight: 300;
+      line-height: 1; color: var(--blanc); margin-bottom: 1.5rem;
+    }
+    .contact-inner h2 em { color: var(--or); font-style: italic; }
+    .contact-inner p { color: var(--brume); font-size: 1.05rem; margin-bottom: 3.5rem; line-height: 1.8; }
+    .contact-links { display: flex; flex-direction: column; gap: 1px; }
+    .contact-link {
+      display: flex; justify-content: space-between; align-items: center;
+      padding: 1.8rem 0; border-top: 1px solid var(--cendre);
+      text-decoration: none; color: var(--ivoire); font-size: 1.3rem;
+      font-weight: 300; transition: all 0.3s;
+    }
+    .contact-link:last-child { border-bottom: 1px solid var(--cendre); }
+    .contact-link:hover { color: var(--or); padding-left: 1rem; }
+    .contact-link span {
+      font-family: 'Space Mono', monospace; font-size: 0.6rem;
+      letter-spacing: 0.2em; text-transform: uppercase; color: var(--gris); transition: color 0.3s;
+    }
+    .contact-link:hover span { color: var(--or); }
+
+    footer {
+      padding: 3rem 4rem; display: flex; justify-content: space-between;
+      align-items: center; border-top: 1px solid var(--cendre);
+    }
+    footer p {
+      font-family: 'Space Mono', monospace; font-size: 0.6rem;
+      letter-spacing: 0.2em; color: var(--gris); text-transform: uppercase;
+    }
+    .divider {
+      height: 1px;
+      background: linear-gradient(90deg, transparent, var(--gris) 20%, var(--gris) 80%, transparent);
+      opacity: 0.3;
+    }
+
+    @keyframes fadeUp { from { opacity: 0; transform: translateY(30px); } to { opacity: 1; transform: translateY(0); } }
+    @keyframes fadeIn { from { opacity: 0; } to { opacity: 1; } }
+    @keyframes scrollPulse { 0%, 100% { opacity: 0.3; } 50% { opacity: 1; } }
+
+    .reveal { opacity: 0; transform: translateY(40px); transition: opacity 0.9s ease, transform 0.9s ease; }
+    .reveal.visible { opacity: 1; transform: translateY(0); }
+
+    @media (max-width: 768px) {
+      nav { padding: 1.5rem 2rem; }
+      .nav-links { display: none; }
+      section { padding: 6rem 2rem; }
+      .hero { padding: 0 2rem 6rem; }
+      .about-grid { grid-template-columns: 1fr; gap: 3rem; }
+      .skills-grid { grid-template-columns: 1fr; }
+      .exp-item { grid-template-columns: 1fr; gap: 0.5rem; }
+      .exp-meta { text-align: left; }
+      footer { flex-direction: column; gap: 1rem; text-align: center; }
+      .hero-scroll { display: none; }
+    }
+  </style>
+</head>
+<body>
+  <div class="cursor" id="cursor"></div>
+  <div class="cursor-ring" id="cursorRing"></div>
+
+  <nav>
+    <a class="nav-logo" href="#">D. —</a>
+    <ul class="nav-links">
+      <li><a href="#about">À propos</a></li>
+      <li><a href="#experiences">Expériences</a></li>
+      <li><a href="#competences">Compétences</a></li>
+      <li><a href="#contact">Contact</a></li>
+    </ul>
+  </nav>
+
+  <section class="hero">
+    <div class="hero-bg"></div>
+    <div class="hero-line"></div>
+    <p class="hero-counter">001 / Script & Production</p>
+    <h1 class="hero-title">Script<br /><em>Super&shy;vision</em><br />& Production</h1>
+    <p class="hero-sub">Paris · Audiovisuel · Cinéma</p>
+    <div class="hero-scroll">
+      <div class="scroll-line"></div>
+      <span>Défiler</span>
+    </div>
+  </section>
+
+  <section id="about">
+    <div class="section-label">À propos</div>
+    <div class="about-grid">
+      <div class="about-portrait">
+        <div class="portrait-placeholder">
+          <svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1">
+            <circle cx="12" cy="8" r="4"/><path d="M4 20c0-4 3.6-7 8-7s8 3 8 7"/>
+          </svg>
+          <p>Votre photo ici</p>
+        </div>
+        <div class="about-frame"></div>
+      </div>
+      <div class="about-text reveal">
+        <h2>Passionnée<br /><em>de plateau</em></h2>
+        <p>Script superviseure et assistante de production basée à Paris, je travaille dans le monde <strong>audiovisuel et cinématographique</strong> depuis plusieurs années.</p>
+        <p>Mon rapport au cinéma dépasse la simple profession — c'est l'univers dans lequel je me sens <strong>pleinement à ma place</strong>, entre rigueur narrative et énergie du plateau.</p>
+        <p>Polyvalente et organisée, j'interviens aussi bien sur la <strong>continuité artistique</strong> que sur la <strong>coordination de production</strong>, des projets courts aux tournages plus ambitieux.</p>
+        <div class="about-stats">
+          <div><div class="stat-num">5+</div><div class="stat-label">Ans d'exp.</div></div>
+          <div><div class="stat-num">20+</div><div class="stat-label">Projets</div></div>
+          <div><div class="stat-num">Paris</div><div class="stat-label">Basée</div></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <div class="divider"></div>
+
+  <section id="experiences">
+    <div class="section-label">Expériences</div>
+    <div class="exp-list">
+      <div class="exp-item reveal">
+        <div class="exp-meta"><div class="exp-year">2023 – 2024</div><div class="exp-type">Court métrage</div></div>
+        <div>
+          <div class="exp-title">Titre du projet</div>
+          <div class="exp-role">Script Superviseure</div>
+          <p class="exp-desc">Suivi de la continuité artistique et technique tout au long du tournage. Gestion des raccords, annotations des prises, coordination avec la réalisation.</p>
+        </div>
+      </div>
+      <div class="exp-item reveal">
+        <div class="exp-meta"><div class="exp-year">2022</div><div class="exp-type">Documentaire</div></div>
+        <div>
+          <div class="exp-title">Titre du projet</div>
+          <div class="exp-role">Assistante de Production</div>
+          <p class="exp-desc">Organisation logistique du tournage, gestion des équipes et des plannings, suivi du budget et des autorisations de tournage.</p>
+        </div>
+      </div>
+      <div class="exp-item reveal">
+        <div class="exp-meta"><div class="exp-year">2021</div><div class="exp-type">Clip / Pub</div></div>
+        <div>
+          <div class="exp-title">Titre du projet</div>
+          <div class="exp-role">Script Superviseure</div>
+          <p class="exp-desc">Lecture critique du scénario, fiches de continuité, présence plateau et validation des raccords entre chaque prise.</p>
+        </div>
+      </div>
+      <div class="exp-item reveal">
+        <div class="exp-meta"><div class="exp-year">2019 – 2020</div><div class="exp-type">Bénévole</div></div>
+        <div>
+          <div class="exp-title">Projets étudiants & indépendants</div>
+          <div class="exp-role">Script / Prod / Régie</div>
+          <p class="exp-desc">Participation à plusieurs tournages associatifs et étudiants, occupant différents postes : scripte, assistanat de production, régie.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <div class="divider"></div>
+
+  <section id="competences">
+    <div class="section-label">Compétences</div>
+    <div class="skills-grid">
+      <div class="skill-card reveal">
+        <span class="skill-icon">🎬</span>
+        <div class="skill-name">Script Supervision</div>
+        <ul class="skill-items">
+          <li>Continuité artistique</li><li>Fiches de raccords</li>
+          <li>Annotations de prises</li><li>Coordination réalisation</li>
+        </ul>
+      </div>
+      <div class="skill-card reveal">
+        <span class="skill-icon">📋</span>
+        <div class="skill-name">Production</div>
+        <ul class="skill-items">
+          <li>Planification tournage</li><li>Feuilles de service</li>
+          <li>Gestion d'équipe</li><li>Logistique plateau</li>
+        </ul>
+      </div>
+      <div class="skill-card reveal">
+        <span class="skill-icon">🗂️</span>
+        <div class="skill-name">Organisation</div>
+        <ul class="skill-items">
+          <li>Dépouillement scénario</li><li>Planning décors & lieux</li>
+          <li>Suivi budget</li><li>Coordination équipes</li>
+        </ul>
+      </div>
+      <div class="skill-card reveal">
+        <span class="skill-icon">🎥</span>
+        <div class="skill-name">Outils</div>
+        <ul class="skill-items">
+          <li>Movie Magic</li><li>Excel / Google Sheets</li>
+          <li>Final Draft</li><li>Celtx</li>
+        </ul>
+      </div>
+      <div class="skill-card reveal">
+        <span class="skill-icon">🤝</span>
+        <div class="skill-name">Collaboration</div>
+        <ul class="skill-items">
+          <li>Liaison équipes créatives</li><li>Communication plateau</li>
+          <li>Adaptabilité</li><li>Gestion du stress</li>
+        </ul>
+      </div>
+      <div class="skill-card reveal">
+        <span class="skill-icon">🌍</span>
+        <div class="skill-name">Langues</div>
+        <ul class="skill-items">
+          <li>Français (natif)</li><li>Anglais (professionnel)</li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <div class="divider"></div>
+
+  <section id="contact">
+    <div class="contact-inner">
+      <div class="section-label">Contact</div>
+      <h2 class="reveal">Travaillons<br /><em>ensemble</em></h2>
+      <p class="reveal">Disponible pour des collaborations sur courts métrages, clips, publicités ou tout projet audiovisuel. N'hésitez pas à me contacter.</p>
+      <div class="contact-links reveal">
+        <a href="mailto:votre@email.com" class="contact-link">votre@email.com<span>Email →</span></a>
+        <a href="https://linkedin.com" class="contact-link" target="_blank">LinkedIn<span>Profil →</span></a>
+        <a href="tel:+33600000000" class="contact-link">+33 6 00 00 00 00<span>Téléphone →</span></a>
+      </div>
+    </div>
+  </section>
+
+  <footer>
+    <p>© 2026 — Daphnée</p>
+    <p>Script Supervision & Production · Paris</p>
+  </footer>
+
+  <script>
+    const cursor = document.getElementById('cursor');
+    const ring = document.getElementById('cursorRing');
+    let mx = 0, my = 0, rx = 0, ry = 0;
+    document.addEventListener('mousemove', e => {
+      mx = e.clientX; my = e.clientY;
+      cursor.style.left = mx + 'px'; cursor.style.top = my + 'px';
+    });
+    function animRing() {
+      rx += (mx - rx) * 0.12; ry += (my - ry) * 0.12;
+      ring.style.left = rx + 'px'; ring.style.top = ry + 'px';
+      requestAnimationFrame(animRing);
+    }
+    animRing();
+    document.querySelectorAll('a, button').forEach(el => {
+      el.addEventListener('mouseenter', () => { cursor.style.width = '20px'; cursor.style.height = '20px'; ring.style.opacity = '1'; });
+      el.addEventListener('mouseleave', () => { cursor.style.width = '10px'; cursor.style.height = '10px'; ring.style.opacity = '0.5'; });
+    });
+
+    const reveals = document.querySelectorAll('.reveal');
+    const observer = new IntersectionObserver(entries => {
+      entries.forEach(e => { if (e.isIntersecting) e.target.classList.add('visible'); });
+    }, { threshold: 0.12 });
+    reveals.forEach(r => observer.observe(r));
+  </script>
+</body>
+</html>
