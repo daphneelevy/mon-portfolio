@@ -27,8 +27,8 @@
     body::after { content:''; position:fixed; inset:0; pointer-events:none; z-index:9990; opacity:.04; background-image:url("data:image/svg+xml,%3Csvg viewBox='0 0 512 512' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='g'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.75' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23g)'/%3E%3C/svg%3E"); background-size:256px; }
 
     /* Cursor */
-    .cur { position:fixed; width:8px; height:8px; background:var(--or); border-radius:50%; pointer-events:none; z-index:9999; transform:translate(-50%,-50%); transition:width .2s,height .2s; }
-    .cur-ring { position:fixed; width:34px; height:34px; border:1px solid rgba(200,160,80,.3); border-radius:50%; pointer-events:none; z-index:9998; transform:translate(-50%,-50%); }
+    .cur { position:fixed; width:16px; height:16px; background:var(--or); border-radius:50%; pointer-events:none; z-index:9999; transform:translate(-50%,-50%); transition:width .2s,height .2s; opacity:.9; }
+    .cur-ring { position:fixed; width:52px; height:52px; border:2px solid rgba(200,160,80,.5); border-radius:50%; pointer-events:none; z-index:9998; transform:translate(-50%,-50%); }
 
     /* NAV */
     nav { position:fixed; top:0; left:0; right:0; z-index:200; padding:1.8rem 5rem; display:flex; justify-content:space-between; align-items:center; background:linear-gradient(180deg,rgba(26,10,13,.97) 0%,transparent 100%); }
@@ -672,8 +672,8 @@ let mx=0,my=0,rx=0,ry=0;
 document.addEventListener('mousemove',e=>{ mx=e.clientX; my=e.clientY; cur.style.left=mx+'px'; cur.style.top=my+'px'; });
 (function a(){ rx+=(mx-rx)*.1; ry+=(my-ry)*.1; ring.style.left=rx+'px'; ring.style.top=ry+'px'; requestAnimationFrame(a); })();
 document.querySelectorAll('a,button,.project-card,.tool-tag').forEach(el=>{
-  el.addEventListener('mouseenter',()=>{ cur.style.width='16px'; cur.style.height='16px'; });
-  el.addEventListener('mouseleave',()=>{ cur.style.width='8px'; cur.style.height='8px'; });
+  el.addEventListener('mouseenter',()=>{ cur.style.width='28px'; cur.style.height='28px'; });
+  el.addEventListener('mouseleave',()=>{ cur.style.width='16px'; cur.style.height='16px'; });
 });
 
 // ── FILMSTRIP ──
