@@ -395,7 +395,7 @@ footer p{font-family:'DM Mono',monospace;font-size:.53rem;letter-spacing:.18em;t
       <h1 class="cl2"><em>Let's work</em><br/>together</h1>
       <p class="cp">Available for short films, music videos, commercials or any audiovisual project. I always reply.</p>
       <div class="clk">
-        <a href="mailto:daphneelevy3@gmail.com" class="clka">daphneelevy3@gmail.com<span>Email →</span></a>
+        <a href="/cdn-cgi/l/email-protection#7c181d0c1412191910190a054f3c1b111d1510521f1311" class="clka"><span class="__cf_email__" data-cfemail="ea8e8b9a82848f8f868f9c93d9aa8d878b8386c4898587">[email&#160;protected]</span><span>Email →</span></a>
         <a href="https://linkedin.com" class="clka" target="_blank">LinkedIn<span>Profile →</span></a>
         <a href="tel:+33698550102" class="clka">06 98 55 01 02<span>Call →</span></a>
       </div>
@@ -410,18 +410,18 @@ footer p{font-family:'DM Mono',monospace;font-size:.53rem;letter-spacing:.18em;t
   <footer><p>© 2026 — Daphnée Levy</p><p class="fq">"The set is where I belong."</p><p>Director · AD · Script Supervisor</p></footer>
 </div>
 
-<script>
+<script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script>
 var PAGES = ['home','works','about','contact'];
 var projects = {
-  1:{title:'"L\'Étoile Rose"',role:'Script Supervisor',year:'2026',type:'Short film',dir:'Albert Joffo',award:'Nikon FF 2026',desc:'Short film directed by Albert Joffo.',video:{type:'none'}},
-  2:{title:'"À quel prix"',role:'Script Supervisor',year:'2026',type:'Short film',dir:'Aurore Knol',award:'Nikon FF 2026',desc:'Short film directed by Aurore Knol.',video:{type:'none'}},
-  3:{title:'"En toute transparence"',role:'Assistant Director',year:'2025',type:'Short film',dir:'Valentin Joubrel',award:'Nikon FF 2025',desc:'Short film directed by Valentin Joubrel.',video:{type:'none'}},
-  4:{title:'"Slapman"',role:'Script Supervisor',year:'2025',type:'Short film',dir:'Elie Attia',award:'Nikon FF 2025',desc:'Short film directed by Elie Attia.',video:{type:'none'}},
-  5:{title:'"Tournesol"',role:'Script Supervisor',year:'2025',type:'Short film',dir:'Théo Benoit de Cognac',award:'Nikon FF 2025',desc:'Short film directed by Théo Benoit de Cognac.',video:{type:'none'}},
-  6:{title:'"Faites moi rêver"',role:'Production Assistant & Script Supervisor',year:'2023',type:'Short film',dir:'Valentin Joubrel',award:'🏆 Grand Prix MAIF',desc:'Award-winning short film. Winner of the Grand Prix MAIF.',video:{type:'none'}},
-  7:{title:'"La Parenthèse"',role:'Director',year:'2025',type:'Short film',dir:'Daphnée Levy',award:'',desc:'Short film written and directed by Daphnée Levy.',video:{type:'none'}},
-  8:{title:'"Kick"',role:'Director of Photography',year:'2025',type:'Short film',dir:'Clara Fortuné',award:'',desc:'Short film directed by Clara Fortuné.',video:{type:'none'}},
-  9:{title:'"Parle"',role:'Collaborator',year:'2025',type:'Short film',dir:'Clara Fortuné',award:'',desc:'Short film directed by Clara Fortuné.',video:{type:'none'}}
+  1:{title:'"L\'Étoile Rose"',role:'Script Supervisor',year:'2026',type:'Short film',dir:'Albert Joffo',award:'Nikon FF 2026',desc:'Short film directed by Albert Joffo.',video:{type:'youtube',videoId:'j_OveGDZqno'}},
+  2:{title:'"À quel prix"',role:'Script Supervisor',year:'2026',type:'Short film',dir:'Aurore Knol',award:'Nikon FF 2026',desc:'Short film directed by Aurore Knol.',video:{type:'youtube',videoId:'0dM2BynV8CU'}},
+  3:{title:'"En toute transparence"',role:'Assistant Director',year:'2025',type:'Short film',dir:'Valentin Joubrel',award:'Nikon FF 2025',desc:'Short film directed by Valentin Joubrel.',video:{type:'youtube',videoId:'SDdSapxjwdM'}},
+  4:{title:'"Slapman"',role:'Script Supervisor',year:'2025',type:'Short film',dir:'Elie Attia',award:'Nikon FF 2025',desc:'Short film directed by Elie Attia.',video:{type:'youtube',videoId:'FDOfwiuTGS4'}},
+  5:{title:'"Tournesol"',role:'Script Supervisor',year:'2025',type:'Short film',dir:'Théo Benoit de Cognac',award:'Nikon FF 2025',desc:'Short film directed by Théo Benoit de Cognac.',video:{type:'youtube',videoId:'TNzrtVF1qwQ'}},
+  6:{title:'"Faites moi rêver"',role:'Production Assistant & Script Supervisor',year:'2023',type:'Short film',dir:'Valentin Joubrel',award:'🏆 Grand Prix MAIF',desc:'Award-winning short film. Winner of the Grand Prix MAIF.',video:{type:'youtube',videoId:'6oUx0vQVumk'}},
+  7:{title:'"La Parenthèse"',role:'Director',year:'2025',type:'Short film',dir:'Daphnée Levy',award:'',desc:'Short film written and directed by Daphnée Levy.',video:{type:'youtube',videoId:'ZGTERnGXcy0'}},
+  8:{title:'"Kick"',role:'Director of Photography',year:'2025',type:'Short film',dir:'Clara Fortuné',award:'',desc:'Short film directed by Clara Fortuné.',video:{type:'youtube',videoId:'Qea_4pXwR7w'}},
+  9:{title:'"Parle"',role:'Collaborator',year:'2025',type:'Short film',dir:'Clara Fortuné',award:'',desc:'Short film directed by Clara Fortuné.',video:{type:'vimeo',videoId:'1123477119'}}
 };
 
 function goTo(name) {
@@ -514,12 +514,4 @@ var fs = document.getElementById('fs');
 for(var i=0;i<32;i++) { var h=document.createElement('div'); h.className='fh'; fs.appendChild(h); }
 
 // Init reveals
-document.querySelectorAll('.rv').forEach(function(el) {
-  var obs = new IntersectionObserver(function(entries) {
-    entries.forEach(function(e) { if(e.isIntersecting) e.target.classList.add('vis'); });
-  },{threshold:.1});
-  obs.observe(el);
-});
-</script>
-</body>
-</html>
+document.querySelectorAl
