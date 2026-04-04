@@ -411,6 +411,8 @@ footer p{font-family:'DM Mono',monospace;font-size:.53rem;letter-spacing:.18em;t
 </div>
 
 <script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script>
+document.addEventListener('DOMContentLoaded', function() {
+
 var PAGES = ['home','works','about','contact'];
 var projects = {
   1:{title:'"L\'Étoile Rose"',role:'Script Supervisor',year:'2026',type:'Short film',dir:'Albert Joffo',award:'Nikon FF 2026',desc:'Short film directed by Albert Joffo.',video:{type:'youtube',videoId:'j_OveGDZqno'}},
@@ -465,7 +467,8 @@ document.querySelectorAll('[data-pm]').forEach(function(a) {
 
 // Filter
 document.querySelectorAll('.fb').forEach(function(btn) {
-  btn.addEventListener('click', function() {
+  btn.addEventListener('click', function(e) {
+    e.stopPropagation();
     document.querySelectorAll('.fb').forEach(function(b) { b.classList.remove('on'); });
     this.classList.add('on');
     var cat = this.getAttribute('data-cat');
@@ -514,4 +517,14 @@ var fs = document.getElementById('fs');
 for(var i=0;i<32;i++) { var h=document.createElement('div'); h.className='fh'; fs.appendChild(h); }
 
 // Init reveals
-document.querySelectorAl
+document.querySelectorAll('.rv').forEach(function(el) {
+  var obs = new IntersectionObserver(function(entries) {
+    entries.forEach(function(e) { if(e.isIntersecting) e.target.classList.add('vis'); });
+  },{threshold:.1});
+  obs.observe(el);
+});
+
+}); // end DOMContentLoaded
+</script>
+</body>
+</html>
