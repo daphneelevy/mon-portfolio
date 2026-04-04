@@ -1,731 +1,525 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Daphnée Levy — Director · AD · Script Supervisor</title>
-  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;0,900;1,400;1,700&family=Libre+Baskerville:ital,wght@0,400;0,700;1,400&family=DM+Mono:wght@300;400&display=swap" rel="stylesheet" />
-  <style>
-    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
-    :root {
-      --fond:    #1a0a0d;
-      --bx1:     #220e12;
-      --bx2:     #2e1318;
-      --bx3:     #3c1a21;
-      --bx4:     #4e2229;
-      --bx5:     #6a2f38;
-      --or:      #c8a050;
-      --or-pale: #debb78;
-      --or-dim:  rgba(200,160,80,.13);
-      --fin:     rgba(200,160,80,.22);
-      --texte:   #ecddd0;
-      --doux:    #b08890;
-    }
-    html { scroll-behavior: smooth; }
-    body { background:var(--fond); color:var(--texte); font-family:'Libre Baskerville',Georgia,serif; font-size:17px; line-height:1.8; overflow-x:hidden; }
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>Daphnée Levy — Director · AD · Script Supervisor</title>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;0,900;1,400&family=DM+Mono:wght@400&display=swap" rel="stylesheet"/>
+<style>
+*{box-sizing:border-box;margin:0;padding:0}
+:root{
+  --bg:#1a0a0d;--bg2:#2e1318;--bg3:#3c1a21;--bg4:#4e2229;
+  --or:#c8a050;--orp:#debb78;--tx:#ecddd0;--mx:#b08890;
+  --fi:rgba(200,160,80,.2);--od:rgba(200,160,80,.12);
+}
+html{scroll-behavior:smooth}
+body{background:var(--bg);color:var(--tx);font-family:'Playfair Display',Georgia,serif;overflow-x:hidden}
 
-    /* grain removed */
+/* NAV */
+nav{position:fixed;top:0;left:0;right:0;z-index:100;display:flex;justify-content:space-between;align-items:center;padding:1.5rem 4rem;background:rgba(26,10,13,.95);border-bottom:1px solid var(--fi)}
+.logo{font-style:italic;font-size:1.1rem;color:var(--or);cursor:pointer}
+.nav-links{display:flex;gap:2rem;list-style:none}
+.nav-links a{font-family:'DM Mono',monospace;font-size:.6rem;letter-spacing:.2em;text-transform:uppercase;color:var(--mx);cursor:pointer;text-decoration:none;padding-bottom:.2rem;border-bottom:1px solid transparent;transition:color .3s,border-color .3s}
+.nav-links a:hover,.nav-links a.on{color:var(--or);border-bottom-color:var(--or)}
+.burger{display:none;flex-direction:column;gap:5px;cursor:pointer;background:none;border:none;padding:.3rem}
+.burger span{display:block;width:22px;height:2px;background:var(--or);transition:all .3s}
+.burger.open span:nth-child(1){transform:translateY(7px) rotate(45deg)}
+.burger.open span:nth-child(2){opacity:0}
+.burger.open span:nth-child(3){transform:translateY(-7px) rotate(-45deg)}
+.mmenu{display:none;position:fixed;inset:0;background:var(--bg);z-index:99;flex-direction:column;align-items:center;justify-content:center;gap:2rem}
+.mmenu.open{display:flex}
+.mmenu a{font-size:2.5rem;font-weight:700;color:var(--tx);cursor:pointer;text-decoration:none;transition:color .3s}
+.mmenu a:hover{color:var(--or)}
 
-    /* Cursor */
-    /* Cursor removed */
+/* PAGES */
+.pg{display:none}
+.pg.on{display:block}
 
-    /* NAV */
-    nav { position:fixed; top:0; left:0; right:0; z-index:200; padding:1.8rem 5rem; display:flex; justify-content:space-between; align-items:center; background:linear-gradient(180deg,rgba(26,10,13,.97) 0%,transparent 100%); }
-    .nav-logo { font-family:'Playfair Display',serif; font-style:italic; font-size:1.1rem; color:var(--or); text-decoration:none; letter-spacing:.03em; }
-    .nav-links { display:flex; gap:2.5rem; list-style:none; }
-    .nav-links a { font-family:'DM Mono',monospace; font-size:.62rem; letter-spacing:.22em; text-transform:uppercase; color:var(--doux); text-decoration:none; transition:color .3s; padding-bottom:.3rem; border-bottom:1px solid transparent; }
-    .nav-links a:hover, .nav-links a.active { color:var(--or); border-bottom-color:var(--or); }
+/* HOME */
+.hero{min-height:100vh;display:grid;grid-template-columns:1fr 1fr}
+.hl{display:flex;flex-direction:column;justify-content:flex-end;padding:0 3rem 6rem 4rem}
+.hr{background:var(--bg2);position:relative;overflow:hidden}
+.hr::before{content:'';position:absolute;inset:0;background:radial-gradient(ellipse 80% 60% at 50% 40%,rgba(200,160,80,.07) 0%,transparent 65%)}
+.hframe{position:absolute;top:2.5rem;left:3.5rem;right:2.5rem;bottom:2.5rem;border:1px solid var(--fi);pointer-events:none}
+.fstrip{position:absolute;left:0;top:0;bottom:0;width:24px;background:var(--bg);display:flex;flex-direction:column;align-items:center;padding:8px 0;gap:4px}
+.fh{width:13px;height:9px;background:var(--bg2);border-radius:2px;border:1px solid rgba(200,160,80,.1);flex-shrink:0}
+.pph{position:absolute;inset:2.5rem;left:3.5rem;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:1rem;opacity:.4}
+.pph svg{color:var(--or)}
+.pph p{font-family:'DM Mono',monospace;font-size:.55rem;letter-spacing:.2em;text-transform:uppercase;color:var(--mx)}
+.eyebrow{font-family:'DM Mono',monospace;font-size:.58rem;letter-spacing:.32em;text-transform:uppercase;color:var(--or);margin-bottom:1.5rem}
+.htitle{font-size:clamp(3.5rem,7vw,6.5rem);font-weight:900;line-height:.95;color:var(--orp);letter-spacing:-.02em}
+.profs{display:flex;gap:.6rem;flex-wrap:wrap;margin-top:1.2rem}
+.prof{font-family:'DM Mono',monospace;font-size:.57rem;letter-spacing:.15em;text-transform:uppercase;color:var(--or);border:1px solid var(--or);padding:.28rem .7rem}
+.hcite{margin-top:1.8rem;padding-left:1.1rem;border-left:2px solid var(--or);font-style:italic;color:var(--mx);font-size:.92rem;line-height:1.7}
+.hcite small{display:block;margin-top:.3rem;font-size:.7rem;color:var(--bg4);font-style:normal;font-family:'DM Mono',monospace;letter-spacing:.1em}
+.hbtns{margin-top:2.5rem;display:flex;gap:1rem;flex-wrap:wrap}
+.btn{font-family:'DM Mono',monospace;font-size:.6rem;letter-spacing:.15em;text-transform:uppercase;padding:.8rem 1.6rem;cursor:pointer;transition:all .25s;border:none}
+.bs{background:var(--or);color:var(--bg)}
+.bs:hover{background:var(--orp)}
+.bo{background:transparent;color:var(--tx);border:1px solid var(--fi)}
+.bo:hover{border-color:var(--or);color:var(--or)}
 
-    /* PAGES */
-    .page { display:none; min-height:100vh; }
-    .page.active { display:block; }
+/* WORKS */
+#pg-works{padding-top:7rem}
+.wh{padding:3rem 4rem 2rem}
+.wh h1{font-size:clamp(2.5rem,5vw,4rem);font-weight:900;color:var(--orp)}
+.wh h1 em{font-style:italic;color:var(--or)}
+.wh p{color:var(--mx);font-size:.9rem;margin-top:.6rem;font-family:'DM Mono',monospace;letter-spacing:.05em}
+.wf{padding:0 4rem 2rem;display:flex;gap:.4rem;flex-wrap:wrap}
+.fb{font-family:'DM Mono',monospace;font-size:.55rem;letter-spacing:.15em;text-transform:uppercase;padding:.35rem .85rem;border:1px solid var(--fi);color:var(--mx);background:transparent;cursor:pointer;transition:all .3s}
+.fb:hover,.fb.on{border-color:var(--or);color:var(--or);background:var(--od)}
+.wg{padding:0 4rem 6rem;display:grid;grid-template-columns:repeat(3,1fr);gap:3px}
+.pc{background:var(--bg2);cursor:pointer;transition:background .3s;position:relative;overflow:hidden}
+.pc:hover{background:var(--bg3)}
+.pc:hover .co{opacity:1}
+.pc:hover .ct{color:var(--or)}
+.cth{aspect-ratio:16/10;background:var(--bg3);position:relative;overflow:hidden;display:flex;align-items:center;justify-content:center}
+.cth img{width:100%;height:100%;object-fit:cover;display:block}
+.cph{display:flex;flex-direction:column;align-items:center;justify-content:center;gap:.6rem;color:var(--bg4);width:100%;height:100%}
+.cph svg{opacity:.4}
+.cph span{font-family:'DM Mono',monospace;font-size:.52rem;letter-spacing:.18em;text-transform:uppercase;opacity:.6}
+.co{position:absolute;inset:0;background:rgba(26,10,13,.5);display:flex;align-items:center;justify-content:center;opacity:0;transition:opacity .3s}
+.pi{width:44px;height:44px;border:1px solid var(--or);border-radius:50%;display:flex;align-items:center;justify-content:center;color:var(--or)}
+.cb{padding:1.3rem 1.6rem}
+.cy{font-family:'DM Mono',monospace;font-size:.52rem;letter-spacing:.18em;color:var(--or);margin-bottom:.3rem}
+.ct{font-size:1.05rem;font-weight:700;color:var(--tx);margin-bottom:.25rem;transition:color .3s}
+.cr{font-style:italic;color:var(--mx);font-size:.82rem;margin-bottom:.4rem}
+.cf{display:flex;justify-content:space-between;align-items:center;margin-top:.6rem;padding-top:.6rem;border-top:1px solid rgba(200,160,80,.07)}
+.ctype{font-family:'DM Mono',monospace;font-size:.5rem;letter-spacing:.12em;text-transform:uppercase;color:var(--bg4)}
+.caw{font-family:'DM Mono',monospace;font-size:.5rem;letter-spacing:.1em;text-transform:uppercase;color:var(--or)}
 
-    /* ── HOME ── */
-    .hero { min-height:100vh; display:grid; grid-template-columns:1fr 1fr; position:relative; overflow:hidden; }
-    .hero-left { display:flex; flex-direction:column; justify-content:flex-end; padding:0 4rem 7rem 5rem; position:relative; z-index:2; }
-    .hero-right { background:var(--bx2); position:relative; overflow:hidden; }
-    .hero-right::before { content:''; position:absolute; inset:0; background:radial-gradient(ellipse 80% 60% at 50% 40%,rgba(200,160,80,.07) 0%,transparent 65%),linear-gradient(135deg,var(--bx3) 0%,var(--bx2) 100%); }
-    .hero-frame { position:absolute; top:3rem; left:4rem; right:3rem; bottom:3rem; border:1px solid var(--fin); pointer-events:none; }
-    .hero-frame::after { content:''; position:absolute; top:1rem; left:1rem; right:1rem; bottom:1rem; border:1px solid rgba(200,160,80,.07); }
-    .filmstrip { position:absolute; left:0; top:0; bottom:0; width:26px; background:var(--fond); display:flex; flex-direction:column; align-items:center; padding:8px 0; gap:4px; }
-    .fhole { width:14px; height:10px; background:var(--bx1); border-radius:2px; border:1px solid rgba(200,160,80,.1); flex-shrink:0; }
-    .photo-ph { position:absolute; inset:3rem; left:4rem; display:flex; flex-direction:column; align-items:center; justify-content:center; gap:1.2rem; }
-    .photo-ph svg { opacity:.2; color:var(--or); }
-    .photo-ph p { font-family:'DM Mono',monospace; font-size:.58rem; letter-spacing:.25em; text-transform:uppercase; color:var(--doux); opacity:.5; }
+/* MODAL */
+.mo{position:fixed;inset:0;background:rgba(26,10,13,.92);z-index:200;display:flex;align-items:center;justify-content:center;padding:2rem;opacity:0;pointer-events:none;transition:opacity .3s}
+.mo.open{opacity:1;pointer-events:all}
+.md{background:var(--bg2);max-width:860px;width:100%;border:1px solid var(--fi);position:relative}
+.mc{position:absolute;top:.8rem;right:.8rem;background:transparent;border:1px solid var(--fi);color:var(--mx);width:32px;height:32px;display:flex;align-items:center;justify-content:center;cursor:pointer;font-size:1rem;transition:all .3s;z-index:10}
+.mc:hover{border-color:var(--or);color:var(--or)}
+.mv{width:100%;aspect-ratio:16/9;background:var(--bg)}
+.mv iframe,.mv video{width:100%;height:100%;border:none;display:block}
+.mvp{width:100%;aspect-ratio:16/9;background:var(--bg);display:flex;align-items:center;justify-content:center}
+.mvp p{font-family:'DM Mono',monospace;font-size:.58rem;letter-spacing:.2em;text-transform:uppercase;color:var(--mx)}
+.mi{padding:1.8rem}
+.mt{font-size:1.5rem;font-weight:700;color:var(--orp);margin-bottom:.3rem}
+.mr{font-style:italic;color:var(--or);font-size:.9rem;margin-bottom:.7rem}
+.md2{color:var(--mx);font-size:.88rem;line-height:1.75;font-family:'DM Mono',monospace;letter-spacing:.02em}
+.mm{display:flex;gap:1.8rem;margin-top:1rem;padding-top:1rem;border-top:1px solid var(--fi);flex-wrap:wrap}
+.mmi{font-family:'DM Mono',monospace;font-size:.55rem;letter-spacing:.12em;text-transform:uppercase}
+.mmi span{display:block;color:var(--or);margin-bottom:.2rem}
+.mmi p{color:var(--mx)}
 
-    .hero-eyebrow { font-family:'DM Mono',monospace; font-size:.6rem; letter-spacing:.35em; text-transform:uppercase; color:var(--or); margin-bottom:1.5rem; }
-    .hero-title { font-family:'Playfair Display',serif; font-size:clamp(3.5rem,7vw,6.5rem); font-weight:900; line-height:.95; color:var(--or-pale); letter-spacing:-.02em; }
-    .hero-profession { display:flex; gap:1rem; flex-wrap:wrap; margin-top:1.2rem; }
-    .prof-tag { font-family:'DM Mono',monospace; font-size:.6rem; letter-spacing:.18em; text-transform:uppercase; color:var(--doux); border:1px solid var(--fin); padding:.3rem .8rem; }
-    .prof-tag.main { color:var(--or); border-color:var(--or); }
-    .hero-cite { margin-top:2rem; padding-left:1.2rem; border-left:2px solid var(--or); font-style:italic; color:var(--doux); font-size:.95rem; line-height:1.7; }
-    .hero-cite small { display:block; margin-top:.4rem; font-size:.72rem; color:var(--bx5); font-style:normal; font-family:'DM Mono',monospace; letter-spacing:.1em; }
-    .hero-actions { margin-top:2.8rem; display:flex; gap:1rem; flex-wrap:wrap; }
-    .btn { display:inline-flex; align-items:center; gap:.6rem; font-family:'DM Mono',monospace; font-size:.62rem; letter-spacing:.18em; text-transform:uppercase; padding:.85rem 1.8rem; text-decoration:none; transition:all .3s; cursor:pointer; border:none; }
-    .btn-solid { background:var(--or); color:var(--fond); }
-    .btn-solid:hover { background:var(--or-pale); transform:translateX(3px); }
-    .btn-outline { border:1px solid var(--fin); color:var(--texte); background:transparent; }
-    .btn-outline:hover { border-color:var(--or); color:var(--or); transform:translateX(3px); }
-    .scene-bg { position:absolute; right:5rem; bottom:5rem; font-family:'Playfair Display',serif; font-style:italic; font-size:9rem; font-weight:900; color:rgba(200,160,80,.04); line-height:1; pointer-events:none; user-select:none; }
+/* ABOUT */
+#pg-about{padding-top:7rem}
+.aw{padding:3rem 4rem 6rem}
+.ag{display:grid;grid-template-columns:1fr 1.6fr;gap:5rem;align-items:start;margin-bottom:5rem}
+.apb{position:relative}
+.ap{width:100%;aspect-ratio:3/4;background:var(--bg3);display:flex;align-items:center;justify-content:center;overflow:hidden}
+.ap img{width:100%;height:100%;object-fit:cover}
+.apph{display:flex;flex-direction:column;align-items:center;justify-content:center;gap:1rem;color:var(--bg4);opacity:.5}
+.apph svg{opacity:.5}
+.apph p{font-family:'DM Mono',monospace;font-size:.55rem;letter-spacing:.2em;text-transform:uppercase}
+.af{position:absolute;top:-10px;right:-10px;width:100%;height:100%;border:1px solid var(--fi);pointer-events:none}
+.ac h1{font-size:clamp(2.5rem,5vw,4rem);font-weight:900;line-height:1;color:var(--orp);margin-bottom:.6rem}
+.ac h1 em{font-style:italic;color:var(--or)}
+.aroles{display:flex;gap:.5rem;flex-wrap:wrap;margin-bottom:1.8rem}
+.ar{font-family:'DM Mono',monospace;font-size:.55rem;letter-spacing:.13em;text-transform:uppercase;padding:.28rem .7rem;border:1px solid var(--fi);color:var(--mx)}
+.ar.hi{border-color:var(--or);color:var(--or)}
+.abio p{color:var(--mx);font-size:.95rem;line-height:1.85;margin-bottom:1.2rem}
+.abio p strong{color:var(--tx);font-weight:700}
+.aq{margin:1.8rem 0;padding:1.3rem 1.7rem;border-left:2px solid var(--or);background:var(--od);font-style:italic;font-size:.95rem;color:var(--tx);line-height:1.7}
+.ast{display:flex;gap:2.5rem;padding-top:2rem;border-top:1px solid var(--fi);margin-top:2rem}
+.sn{font-size:2.3rem;font-weight:900;color:var(--or);line-height:1}
+.sl{font-family:'DM Mono',monospace;font-size:.52rem;letter-spacing:.18em;text-transform:uppercase;color:var(--mx);margin-top:.3rem}
+.ag2{display:grid;grid-template-columns:1fr 1fr;gap:4rem}
+.ab2 h3{font-size:1.4rem;font-weight:700;color:var(--orp);margin-bottom:1.8rem}
+.ei{padding:1.3rem 0;border-bottom:1px solid rgba(200,160,80,.08)}
+.ei:first-of-type{border-top:1px solid rgba(200,160,80,.08)}
+.ey{font-family:'DM Mono',monospace;font-size:.58rem;color:var(--or);letter-spacing:.08em;margin-bottom:.3rem}
+.es{font-size:.98rem;font-weight:700;color:var(--tx)}
+.ed{font-style:italic;color:var(--mx);font-size:.87rem;margin-top:.2rem}
+.tg{display:flex;flex-wrap:wrap;gap:.4rem;margin-top:.8rem}
+.tgi{font-family:'DM Mono',monospace;font-size:.53rem;letter-spacing:.08em;text-transform:uppercase;padding:.28rem .65rem;border:1px solid var(--fi);color:var(--mx);transition:all .3s}
+.tgi:hover{border-color:var(--or);color:var(--or)}
+.div{height:1px;background:linear-gradient(90deg,transparent,var(--fi) 30%,var(--fi) 70%,transparent);margin:3rem 0}
 
-    /* ── SHARED SECTIONS ── */
-    .page-section { padding:9rem 5rem; }
-    .stag { font-family:'DM Mono',monospace; font-size:.58rem; letter-spacing:.4em; text-transform:uppercase; color:var(--or); margin-bottom:.8rem; display:flex; align-items:center; gap:1rem; }
-    .stag::before { content:''; width:28px; height:1px; background:var(--or); }
-    .divider { height:1px; background:linear-gradient(90deg,transparent,var(--fin) 30%,var(--fin) 70%,transparent); }
-    .section-h2 { font-family:'Playfair Display',serif; font-size:clamp(2rem,4vw,3rem); font-weight:700; color:var(--or-pale); }
-    .section-h2 em { font-style:italic; color:var(--or); }
+/* CONTACT */
+#pg-contact{padding-top:7rem}
+.cw{padding:3rem 4rem 6rem;display:grid;grid-template-columns:1fr 1fr;gap:7rem;align-items:start}
+.cl2 h1{font-size:clamp(2.5rem,5vw,4rem);font-weight:900;line-height:1;color:var(--orp);margin-bottom:1.2rem}
+.cl2 h1 em{font-style:italic;color:var(--or)}
+.cp{color:var(--mx);font-size:.92rem;line-height:1.8;margin-bottom:2rem;font-family:'DM Mono',monospace;letter-spacing:.03em}
+.clk{display:flex;flex-direction:column}
+.clka{display:flex;justify-content:space-between;align-items:center;padding:1.3rem 0;border-top:1px solid rgba(200,160,80,.12);text-decoration:none;color:var(--tx);font-size:1rem;transition:all .3s}
+.clka:last-child{border-bottom:1px solid rgba(200,160,80,.12)}
+.clka:hover{color:var(--or);padding-left:.7rem}
+.clka span{font-family:'DM Mono',monospace;font-size:.52rem;letter-spacing:.18em;text-transform:uppercase;color:var(--bg4);transition:color .3s}
+.clka:hover span{color:var(--or)}
+.ic2{display:flex;flex-direction:column;gap:1.1rem}
+.ic2i{background:rgba(26,10,13,.6);border:1px solid rgba(200,160,80,.12);padding:1.4rem 1.8rem}
+.ic2l{font-family:'DM Mono',monospace;font-size:.53rem;letter-spacing:.28em;text-transform:uppercase;color:var(--or);margin-bottom:.4rem}
+.ic2v{font-style:italic;font-size:.95rem;color:var(--tx)}
 
-    /* ── WORKS PAGE ── */
-    #page-works { padding-top:7rem; }
-    .works-header { padding:4rem 5rem 3rem; }
-    .works-header h1 { font-family:'Playfair Display',serif; font-size:clamp(2.5rem,5vw,4rem); font-weight:900; color:var(--or-pale); }
-    .works-header h1 em { font-style:italic; color:var(--or); }
-    .works-header p { color:var(--doux); font-size:.95rem; margin-top:.8rem; }
+/* FOOTER */
+footer{background:var(--bg);padding:2rem 4rem;display:flex;justify-content:space-between;align-items:center;border-top:1px solid rgba(200,160,80,.08)}
+footer p{font-family:'DM Mono',monospace;font-size:.53rem;letter-spacing:.18em;text-transform:uppercase;color:var(--bg4)}
+.fq{font-style:italic;font-size:.78rem;color:var(--mx);font-family:'Playfair Display',serif}
 
-    /* Filter tabs */
-    .works-filters { padding:0 5rem 3rem; display:flex; gap:.5rem; flex-wrap:wrap; }
-    .filter-btn { font-family:'DM Mono',monospace; font-size:.58rem; letter-spacing:.18em; text-transform:uppercase; padding:.4rem 1rem; border:1px solid var(--fin); color:var(--doux); background:transparent; cursor:pointer; transition:all .3s; }
-    .filter-btn:hover, .filter-btn.active { border-color:var(--or); color:var(--or); background:var(--or-dim); }
+/* STAG */
+.stag{font-family:'DM Mono',monospace;font-size:.55rem;letter-spacing:.38em;text-transform:uppercase;color:var(--or);margin-bottom:.7rem;display:flex;align-items:center;gap:.9rem}
+.stag::before{content:'';width:26px;height:1px;background:var(--or)}
 
-    /* Projects grid */
-    .works-grid { padding:0 5rem 8rem; display:grid; grid-template-columns:repeat(3,1fr); gap:3px; }
-    .project-card { background:var(--bx2); position:relative; overflow:hidden; cursor:pointer; transition:background .3s; }
-    .project-card:hover { background:var(--bx3); }
-    .project-card:hover .card-overlay { opacity:1; }
-    .project-card:hover .card-arrow { transform:translateX(4px); }
-    .card-thumb {
-      aspect-ratio:16/10; background:var(--bx3); position:relative; overflow:hidden;
-      display:flex; align-items:center; justify-content:center;
-    }
-    .card-thumb-img { width:100%; height:100%; object-fit:cover; display:block; }
-    .card-thumb-placeholder { display:flex; flex-direction:column; align-items:center; justify-content:center; gap:.8rem; color:var(--bx5); width:100%; height:100%; }
-    .card-thumb-placeholder svg { opacity:.4; }
-    .card-thumb-placeholder span { font-family:'DM Mono',monospace; font-size:.55rem; letter-spacing:.2em; text-transform:uppercase; opacity:.6; }
-    .card-overlay { position:absolute; inset:0; background:rgba(26,10,13,.5); display:flex; align-items:center; justify-content:center; opacity:0; transition:opacity .3s; }
-    .play-icon { width:48px; height:48px; border:1px solid var(--or); border-radius:50%; display:flex; align-items:center; justify-content:center; color:var(--or); }
-    .card-body { padding:1.5rem 1.8rem; }
-    .card-year { font-family:'DM Mono',monospace; font-size:.55rem; letter-spacing:.2em; color:var(--or); margin-bottom:.4rem; }
-    .card-title { font-family:'Playfair Display',serif; font-size:1.1rem; font-weight:700; color:var(--texte); margin-bottom:.3rem; transition:color .3s; }
-    .project-card:hover .card-title { color:var(--or); }
-    .card-role { font-style:italic; color:var(--doux); font-size:.85rem; margin-bottom:.5rem; }
-    .card-footer { display:flex; justify-content:space-between; align-items:center; margin-top:.8rem; padding-top:.8rem; border-top:1px solid rgba(200,160,80,.08); }
-    .card-type { font-family:'DM Mono',monospace; font-size:.52rem; letter-spacing:.15em; text-transform:uppercase; color:var(--bx5); }
-    .card-award { font-family:'DM Mono',monospace; font-size:.52rem; letter-spacing:.12em; text-transform:uppercase; color:var(--or); }
-    .card-arrow { display:inline-block; color:var(--or); transition:transform .3s; font-size:.8rem; }
+/* REVEAL */
+.rv{opacity:0;transform:translateY(28px);transition:opacity .8s ease,transform .8s ease}
+.rv.vis{opacity:1;transform:translateY(0)}
+.d1{transition-delay:.12s}.d2{transition-delay:.24s}.d3{transition-delay:.36s}
 
-    /* Modal */
-    .modal-overlay { position:fixed; inset:0; background:rgba(26,10,13,.92); z-index:1000; display:flex; align-items:center; justify-content:center; padding:2rem; opacity:0; pointer-events:none; transition:opacity .3s; }
-    .modal-overlay.open { opacity:1; pointer-events:all; }
-    .modal { background:var(--bx2); max-width:900px; width:100%; position:relative; border:1px solid var(--fin); }
-    .modal-close { position:absolute; top:1rem; right:1rem; background:transparent; border:1px solid var(--fin); color:var(--doux); width:36px; height:36px; display:flex; align-items:center; justify-content:center; cursor:pointer; font-size:1.1rem; z-index:10; transition:all .3s; }
-    .modal-close:hover { border-color:var(--or); color:var(--or); }
-    .modal-video { width:100%; aspect-ratio:16/9; background:var(--fond); }
-    .modal-video iframe { width:100%; height:100%; border:none; display:block; }
-    .modal-video-upload { width:100%; aspect-ratio:16/9; background:var(--fond); }
-    .modal-video-upload video { width:100%; height:100%; display:block; }
-    .modal-info { padding:2rem; }
-    .modal-title { font-family:'Playfair Display',serif; font-size:1.6rem; font-weight:700; color:var(--or-pale); margin-bottom:.4rem; }
-    .modal-role { font-style:italic; color:var(--or); font-size:.95rem; margin-bottom:.8rem; }
-    .modal-desc { color:var(--doux); font-size:.9rem; line-height:1.75; }
-    .modal-meta { display:flex; gap:2rem; margin-top:1.2rem; padding-top:1.2rem; border-top:1px solid var(--fin); }
-    .modal-meta-item { font-family:'DM Mono',monospace; font-size:.58rem; letter-spacing:.15em; text-transform:uppercase; }
-    .modal-meta-item span { display:block; color:var(--or); margin-bottom:.2rem; }
-    .modal-meta-item p { color:var(--doux); }
-
-    /* ── ABOUT PAGE ── */
-    #page-about { padding-top:7rem; }
-    .about-wrap { padding:4rem 5rem 8rem; }
-    .about-hero { display:grid; grid-template-columns:1fr 1.6fr; gap:6rem; align-items:start; margin-bottom:6rem; }
-    .about-photo-box { position:relative; }
-    .about-photo { width:100%; aspect-ratio:3/4; background:var(--bx3); display:flex; align-items:center; justify-content:center; overflow:hidden; }
-    .about-photo img { width:100%; height:100%; object-fit:cover; }
-    .about-photo-ph { display:flex; flex-direction:column; align-items:center; justify-content:center; gap:1rem; color:var(--bx5); }
-    .about-photo-ph svg { opacity:.3; }
-    .about-photo-ph p { font-family:'DM Mono',monospace; font-size:.58rem; letter-spacing:.2em; text-transform:uppercase; }
-    .about-frame2 { position:absolute; top:-12px; right:-12px; width:100%; height:100%; border:1px solid var(--fin); pointer-events:none; }
-    .about-content h1 { font-family:'Playfair Display',serif; font-size:clamp(2.5rem,5vw,4rem); font-weight:900; line-height:1; color:var(--or-pale); margin-bottom:.6rem; }
-    .about-content h1 em { font-style:italic; color:var(--or); }
-    .about-roles { display:flex; gap:.6rem; flex-wrap:wrap; margin-bottom:2rem; }
-    .about-role-tag { font-family:'DM Mono',monospace; font-size:.58rem; letter-spacing:.15em; text-transform:uppercase; padding:.3rem .8rem; border:1px solid var(--fin); color:var(--doux); }
-    .about-role-tag.hi { border-color:var(--or); color:var(--or); }
-    .about-bio p { color:var(--doux); font-size:.98rem; line-height:1.85; margin-bottom:1.3rem; }
-    .about-bio p strong { color:var(--texte); }
-    .about-quote2 { margin:2rem 0; padding:1.4rem 1.8rem; border-left:2px solid var(--or); background:var(--or-dim); font-style:italic; font-size:1rem; color:var(--texte); line-height:1.7; }
-    .about-stats { display:flex; gap:3rem; padding-top:2rem; border-top:1px solid var(--fin); margin-top:2rem; }
-    .snum { font-family:'Playfair Display',serif; font-size:2.4rem; font-weight:900; color:var(--or); line-height:1; }
-    .slbl { font-family:'DM Mono',monospace; font-size:.55rem; letter-spacing:.2em; text-transform:uppercase; color:var(--doux); margin-top:.3rem; }
-
-    /* Education & Skills */
-    .about-grid2 { display:grid; grid-template-columns:1fr 1fr; gap:4rem; }
-    .about-block h3 { font-family:'Playfair Display',serif; font-size:1.5rem; font-weight:700; color:var(--or-pale); margin-bottom:2rem; }
-    .edu-item { padding:1.5rem 0; border-bottom:1px solid rgba(200,160,80,.08); }
-    .edu-item:first-of-type { border-top:1px solid rgba(200,160,80,.08); }
-    .edu-year { font-family:'DM Mono',monospace; font-size:.6rem; color:var(--or); letter-spacing:.1em; margin-bottom:.3rem; }
-    .edu-school { font-family:'Playfair Display',serif; font-size:1rem; font-weight:700; color:var(--texte); }
-    .edu-degree { font-style:italic; color:var(--doux); font-size:.9rem; margin-top:.2rem; }
-    .skills-list { display:flex; flex-direction:column; gap:1.2rem; }
-    .skill-row { display:flex; flex-direction:column; gap:.4rem; }
-    .skill-name-row { display:flex; justify-content:space-between; }
-    .skill-label { font-family:'DM Mono',monospace; font-size:.6rem; letter-spacing:.15em; text-transform:uppercase; color:var(--texte); }
-    .skill-pct { font-family:'DM Mono',monospace; font-size:.58rem; color:var(--or); }
-    .skill-bar { height:2px; background:rgba(200,160,80,.1); }
-    .skill-fill { height:100%; background:linear-gradient(90deg,var(--or),var(--or-pale)); transition:width 1s ease; }
-
-    /* Tools */
-    .tools-grid { display:flex; flex-wrap:wrap; gap:.5rem; margin-top:2rem; }
-    .tool-tag { font-family:'DM Mono',monospace; font-size:.56rem; letter-spacing:.1em; text-transform:uppercase; padding:.35rem .75rem; border:1px solid var(--fin); color:var(--doux); transition:all .3s; }
-    .tool-tag:hover { border-color:var(--or); color:var(--or); }
-
-    /* ── CONTACT PAGE ── */
-    #page-contact { padding-top:7rem; }
-    .contact-wrap { padding:4rem 5rem 8rem; display:grid; grid-template-columns:1fr 1fr; gap:8rem; align-items:start; }
-    .contact-left h1 { font-family:'Playfair Display',serif; font-size:clamp(2.5rem,5vw,4.2rem); font-weight:900; line-height:1; color:var(--or-pale); margin-bottom:1.4rem; }
-    .contact-left h1 em { color:var(--or); font-style:italic; }
-    .contact-p { color:var(--doux); font-size:.98rem; line-height:1.8; margin-bottom:2.5rem; }
-    .clinks { display:flex; flex-direction:column; }
-    .cl { display:flex; justify-content:space-between; align-items:center; padding:1.4rem 0; border-top:1px solid rgba(200,160,80,.12); text-decoration:none; color:var(--texte); font-size:1.05rem; transition:all .3s; }
-    .cl:last-child { border-bottom:1px solid rgba(200,160,80,.12); }
-    .cl:hover { color:var(--or); padding-left:.8rem; }
-    .cl span { font-family:'DM Mono',monospace; font-size:.54rem; letter-spacing:.2em; text-transform:uppercase; color:var(--bx5); transition:color .3s; }
-    .cl:hover span { color:var(--or); }
-    .info-cards { display:flex; flex-direction:column; gap:1.2rem; }
-    .ic { background:rgba(26,10,13,.7); border:1px solid rgba(200,160,80,.12); padding:1.6rem 2rem; }
-    .ic-lbl { font-family:'DM Mono',monospace; font-size:.56rem; letter-spacing:.3em; text-transform:uppercase; color:var(--or); margin-bottom:.5rem; }
-    .ic-val { font-family:'Playfair Display',serif; font-style:italic; font-size:1rem; color:var(--texte); }
-
-    footer { background:var(--fond); padding:2.2rem 5rem; display:flex; justify-content:space-between; align-items:center; border-top:1px solid rgba(200,160,80,.08); }
-    footer p { font-family:'DM Mono',monospace; font-size:.56rem; letter-spacing:.2em; text-transform:uppercase; color:var(--bx5); }
-    .ft-quote { font-family:'Libre Baskerville',serif; font-style:italic; font-size:.8rem; color:var(--doux); }
-
-    @keyframes up { from{opacity:0;transform:translateY(26px);}to{opacity:1;transform:translateY(0);} }
-    .reveal { opacity:0; transform:translateY(32px); transition:opacity .85s ease,transform .85s ease; }
-    .reveal.visible { opacity:1; transform:translateY(0); }
-    .d1{transition-delay:.15s;} .d2{transition-delay:.3s;} .d3{transition-delay:.45s;}
-
-    /* Hamburger */
-    .hamburger { display:none; flex-direction:column; gap:5px; cursor:pointer; padding:.5rem; background:transparent; border:none; }
-    .hamburger span { display:block; width:24px; height:2px; background:var(--or); transition:all .3s; }
-    .hamburger.open span:nth-child(1) { transform:translateY(7px) rotate(45deg); }
-    .hamburger.open span:nth-child(2) { opacity:0; }
-    .hamburger.open span:nth-child(3) { transform:translateY(-7px) rotate(-45deg); }
-
-    /* Mobile menu overlay */
-    .mobile-menu {
-      display:none; position:fixed; inset:0; background:var(--fond);
-      z-index:150; flex-direction:column; align-items:center; justify-content:center; gap:2.5rem;
-    }
-    .mobile-menu.open { display:flex; }
-    .mobile-menu a { font-family:'Playfair Display',serif; font-size:2.5rem; font-weight:700; color:var(--texte); text-decoration:none; letter-spacing:.02em; transition:color .3s; }
-    .mobile-menu a:hover, .mobile-menu a.active { color:var(--or); }
-    .mobile-menu .menu-sub { font-family:'DM Mono',monospace; font-size:.6rem; letter-spacing:.3em; text-transform:uppercase; color:var(--doux); margin-top:2rem; }
-
-    @media(max-width:900px){
-      nav{padding:1.2rem 1.5rem;}
-      .nav-links{display:none;}
-      .hamburger{display:flex;}
-
-      .hero{grid-template-columns:1fr; min-height:100svh;}
-      .hero-left{padding:7rem 1.5rem 4rem;}
-      .hero-right{display:none;}
-      .hero-title{font-size:clamp(3rem,15vw,5rem);}
-      .prof-tag{font-size:.52rem; padding:.25rem .6rem;}
-      .scene-bg{display:none;}
-
-      .page-section{padding:5rem 1.5rem;}
-      .works-header{padding:3rem 1.5rem 2rem;}
-      .works-filters{padding:0 1.5rem 2rem; gap:.4rem;}
-      .filter-btn{font-size:.52rem; padding:.35rem .7rem;}
-      .works-grid{padding:0 1.5rem 5rem; grid-template-columns:1fr;}
-      .card-body{padding:1.2rem 1.4rem;}
-
-      .about-wrap{padding:3rem 1.5rem 5rem;}
-      .about-hero{grid-template-columns:1fr; gap:2.5rem;}
-      .about-photo{aspect-ratio:4/3;}
-      .about-frame2{display:none;}
-      .about-content h1{font-size:clamp(2.5rem,10vw,3.5rem);}
-      .about-stats{gap:1.5rem;}
-      .snum{font-size:2rem;}
-      .about-grid2{grid-template-columns:1fr; gap:3rem;}
-
-      .contact-wrap{padding:3rem 1.5rem 5rem; grid-template-columns:1fr; gap:2.5rem;}
-      .contact-left h1{font-size:clamp(2.5rem,10vw,3.5rem);}
-
-      footer{padding:2rem 1.5rem; flex-direction:column; gap:.6rem; text-align:center;}
-      .ft-quote{display:none;}
-
-      .modal{max-width:100%; margin:1rem;}
-      .modal-info{padding:1.5rem;}
-      .modal-meta{flex-wrap:wrap; gap:1rem;}
-    }
-
-    @media(max-width:480px){
-      .hero-title{font-size:clamp(2.8rem,13vw,4rem);}
-      .about-stats{flex-direction:column; gap:1rem;}
-      .works-filters{overflow-x:auto; flex-wrap:nowrap; padding-bottom:1rem;}
-      .filter-btn{white-space:nowrap; flex-shrink:0;}
-    }
-  </style>
+/* RESPONSIVE */
+@media(max-width:900px){
+  nav{padding:1.2rem 1.5rem}
+  .nav-links{display:none}
+  .burger{display:flex}
+  .hero{grid-template-columns:1fr}
+  .hl{padding:7rem 1.5rem 4rem}
+  .hr{display:none}
+  .wh,.wf{padding-left:1.5rem;padding-right:1.5rem}
+  .wg{padding:0 1.5rem 4rem;grid-template-columns:1fr}
+  .aw,.cw{padding-left:1.5rem;padding-right:1.5rem}
+  .ag,.ag2,.cw{grid-template-columns:1fr;gap:2.5rem}
+  .af{display:none}
+  footer{flex-direction:column;gap:.5rem;text-align:center;padding:1.5rem}
+  .fq{display:none}
+}
+</style>
 </head>
 <body>
 
 <nav>
-  <a class="nav-logo" href="#" onclick="showPage('home')">Daphnée Levy</a>
+  <span class="logo" id="nl">Daphnée Levy</span>
   <ul class="nav-links">
-    <li><a href="#" onclick="showPage('home')" data-page="home" class="active">Home</a></li>
-    <li><a href="#" onclick="showPage('works')" data-page="works">Works</a></li>
-    <li><a href="#" onclick="showPage('about')" data-page="about">About</a></li>
-    <li><a href="#" onclick="showPage('contact')" data-page="contact">Contact</a></li>
+    <li><a data-p="home" class="on">Home</a></li>
+    <li><a data-p="works">Works</a></li>
+    <li><a data-p="about">About</a></li>
+    <li><a data-p="contact">Contact</a></li>
   </ul>
-  <button class="hamburger" id="hamburger" onclick="toggleMenu()">
-    <span></span><span></span><span></span>
-  </button>
+  <button class="burger" id="bg"><span></span><span></span><span></span></button>
 </nav>
 
-<!-- Mobile Menu -->
-<div class="mobile-menu" id="mobile-menu">
-  <a href="#" onclick="showPage('home');toggleMenu()" data-page-mobile="home">Home</a>
-  <a href="#" onclick="showPage('works');toggleMenu()" data-page-mobile="works">Works</a>
-  <a href="#" onclick="showPage('about');toggleMenu()" data-page-mobile="about">About</a>
-  <a href="#" onclick="showPage('contact');toggleMenu()" data-page-mobile="contact">Contact</a>
-  <p class="menu-sub">Director · AD · Script Supervisor</p>
+<div class="mmenu" id="mm">
+  <a data-pm="home">Home</a>
+  <a data-pm="works">Works</a>
+  <a data-pm="about">About</a>
+  <a data-pm="contact">Contact</a>
 </div>
 
-<!-- ══ HOME PAGE ══ -->
-<div id="page-home" class="page active">
+<!-- HOME -->
+<div id="pg-home" class="pg on">
   <div class="hero">
-    <div class="hero-left">
-      <p class="hero-eyebrow">Paris · Film · Audiovisual</p>
-      <h1 class="hero-title">Daphnée<br/>Levy</h1>
-      <div class="hero-profession">
-        <span class="prof-tag main">Director</span>
-        <span class="prof-tag main">Assistant Director</span>
-        <span class="prof-tag main">Script Supervisor</span>
+    <div class="hl">
+      <p class="eyebrow">Paris · Film · Audiovisual</p>
+      <h1 class="htitle">Daphnée<br/>Levy</h1>
+      <div class="profs">
+        <span class="prof">Director</span>
+        <span class="prof">Assistant Director</span>
+        <span class="prof">Script Supervisor</span>
       </div>
-      <p class="hero-cite">
-        "Cinema is modern writing whose ink is light."
-        <small>— Jean Cocteau</small>
-      </p>
-      <div class="hero-actions">
-        <button class="btn btn-solid" onclick="showPage('works')">See my work →</button>
-        <button class="btn btn-outline" onclick="showPage('contact')">Get in touch</button>
+      <p class="hcite">"Cinema is modern writing whose ink is light."<small>— Jean Cocteau</small></p>
+      <div class="hbtns">
+        <button class="btn bs" id="bw">See my work →</button>
+        <button class="btn bo" id="bc">Get in touch</button>
       </div>
     </div>
-    <div class="hero-right">
-      <div class="filmstrip" id="fs"></div>
-      <div class="hero-frame"></div>
-      <div class="photo-ph">
-        <svg width="52" height="52" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width=".8"><circle cx="12" cy="8" r="4"/><path d="M4 20c0-4 3.6-7 8-7s8 3 8 7"/></svg>
+    <div class="hr">
+      <div class="fstrip" id="fs"></div>
+      <div class="hframe"></div>
+      <div class="pph">
+        <svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width=".8"><circle cx="12" cy="8" r="4"/><path d="M4 20c0-4 3.6-7 8-7s8 3 8 7"/></svg>
         <p>Your photo here</p>
       </div>
     </div>
-    <div class="scene-bg">01</div>
   </div>
-  <footer>
-    <p>© 2026 — Daphnée Levy</p>
-    <p class="ft-quote">"The set is where I belong."</p>
-    <p>Director · AD · Script Supervisor · Paris</p>
-  </footer>
+  <footer><p>© 2026 — Daphnée Levy</p><p class="fq">"The set is where I belong."</p><p>Director · AD · Script Supervisor</p></footer>
 </div>
 
-<!-- ══ WORKS PAGE ══ -->
-<div id="page-works" class="page">
-  <div class="works-header reveal">
+<!-- WORKS -->
+<div id="pg-works" class="pg">
+  <div class="wh rv">
     <div class="stag">Portfolio</div>
     <h1>Selected <em>Works</em></h1>
-    <p>Short films, music videos, promotional content — as director, AD or script supervisor.</p>
+    <p>Short films, music videos, content — as director, AD or script supervisor.</p>
   </div>
-  <div class="works-filters">
-    <button class="filter-btn active" onclick="filterWorks('all', this)">All</button>
-    <button class="filter-btn" onclick="filterWorks('director', this)">Director</button>
-    <button class="filter-btn" onclick="filterWorks('ad', this)">Assistant Director</button>
-    <button class="filter-btn" onclick="filterWorks('script', this)">Script Supervisor</button>
-    <button class="filter-btn" onclick="filterWorks('other', this)">Other</button>
+  <div class="wf">
+    <button class="fb on" data-cat="all">All</button>
+    <button class="fb" data-cat="director">Director</button>
+    <button class="fb" data-cat="ad">Assistant Director</button>
+    <button class="fb" data-cat="script">Script Supervisor</button>
+    <button class="fb" data-cat="other">Other</button>
   </div>
-  <div class="works-grid" id="works-grid">
+  <div class="wg" id="wg">
 
-    <!-- PROJECT 1 -->
-    <div class="project-card reveal" data-category="script" onclick="openModal('modal-1')">
-      <div class="card-thumb">
-        <img class="card-thumb-img" src="https://cdn.myportfolio.com/947c2f07-ed41-4988-95c3-4874ab5c67f5/b7975647-3712-4fb7-851c-06e5bdc12ad4_rwc_0x0x2005x1568x32.png?h=dba8d82ddd5192a65faedf559864e337" alt="L'Étoile Rose" loading="lazy" />
-        <div class="card-overlay"><div class="play-icon"><svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><polygon points="5 3 19 12 5 21 5 3"/></svg></div></div>
-      </div>
-      <div class="card-body">
-        <div class="card-year">2026</div>
-        <div class="card-title">"L'Étoile Rose"</div>
-        <div class="card-role">Script Supervisor</div>
-        <div class="card-footer">
-          <span class="card-type">Short film · Albert Joffo</span>
-          <span class="card-award">Nikon FF 2026</span>
-        </div>
-      </div>
+    <div class="pc rv" data-cat="script" data-id="1">
+      <div class="cth"><img src="https://cdn.myportfolio.com/947c2f07-ed41-4988-95c3-4874ab5c67f5/b7975647-3712-4fb7-851c-06e5bdc12ad4_rwc_0x0x2005x1568x32.png?h=dba8d82ddd5192a65faedf559864e337" alt="L'Étoile Rose" loading="lazy"/><div class="co"><div class="pi"><svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><polygon points="5 3 19 12 5 21 5 3"/></svg></div></div></div>
+      <div class="cb"><div class="cy">2026</div><div class="ct">"L'Étoile Rose"</div><div class="cr">Script Supervisor</div><div class="cf"><span class="ctype">Short film · Albert Joffo</span><span class="caw">Nikon FF 2026</span></div></div>
     </div>
 
-    <!-- PROJECT 2 -->
-    <div class="project-card reveal d1" data-category="script" onclick="openModal('modal-2')">
-      <div class="card-thumb">
-        <img class="card-thumb-img" src="https://cdn.myportfolio.com/947c2f07-ed41-4988-95c3-4874ab5c67f5/1f44f388-6366-4f26-a62a-4db44810324f_rwc_788x0x1534x1200x32.png?h=f1d49f52b8e3dc3fca170b5f0c8c3ced" alt="À quel prix" loading="lazy" />
-        <div class="card-overlay"><div class="play-icon"><svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><polygon points="5 3 19 12 5 21 5 3"/></svg></div></div>
-      </div>
-      <div class="card-body">
-        <div class="card-year">2026</div>
-        <div class="card-title">"À quel prix"</div>
-        <div class="card-role">Script Supervisor</div>
-        <div class="card-footer">
-          <span class="card-type">Short film · Aurore Knol</span>
-          <span class="card-award">Nikon FF 2026</span>
-        </div>
-      </div>
+    <div class="pc rv d1" data-cat="script" data-id="2">
+      <div class="cth"><img src="https://cdn.myportfolio.com/947c2f07-ed41-4988-95c3-4874ab5c67f5/1f44f388-6366-4f26-a62a-4db44810324f_rwc_788x0x1534x1200x32.png?h=f1d49f52b8e3dc3fca170b5f0c8c3ced" alt="À quel prix" loading="lazy"/><div class="co"><div class="pi"><svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><polygon points="5 3 19 12 5 21 5 3"/></svg></div></div></div>
+      <div class="cb"><div class="cy">2026</div><div class="ct">"À quel prix"</div><div class="cr">Script Supervisor</div><div class="cf"><span class="ctype">Short film · Aurore Knol</span><span class="caw">Nikon FF 2026</span></div></div>
     </div>
 
-    <!-- PROJECT 3 -->
-    <div class="project-card reveal d2" data-category="ad" onclick="openModal('modal-3')">
-      <div class="card-thumb">
-        <img class="card-thumb-img" src="https://cdn.myportfolio.com/947c2f07-ed41-4988-95c3-4874ab5c67f5/0f58c69e-3975-4747-b194-cc5208d01239_rwc_274x62x1371x1071x32.png?h=477bddebd261fa78905c33af36ae33aa" alt="En toute transparence" loading="lazy" />
-        <div class="card-overlay"><div class="play-icon"><svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><polygon points="5 3 19 12 5 21 5 3"/></svg></div></div>
-      </div>
-      <div class="card-body">
-        <div class="card-year">2025</div>
-        <div class="card-title">"En toute transparence"</div>
-        <div class="card-role">Assistant Director</div>
-        <div class="card-footer">
-          <span class="card-type">Short film · Valentin Joubrel</span>
-          <span class="card-award">Nikon FF 2025</span>
-        </div>
-      </div>
+    <div class="pc rv d2" data-cat="ad" data-id="3">
+      <div class="cth"><img src="https://cdn.myportfolio.com/947c2f07-ed41-4988-95c3-4874ab5c67f5/0f58c69e-3975-4747-b194-cc5208d01239_rwc_274x62x1371x1071x32.png?h=477bddebd261fa78905c33af36ae33aa" alt="En toute transparence" loading="lazy"/><div class="co"><div class="pi"><svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><polygon points="5 3 19 12 5 21 5 3"/></svg></div></div></div>
+      <div class="cb"><div class="cy">2025</div><div class="ct">"En toute transparence"</div><div class="cr">Assistant Director</div><div class="cf"><span class="ctype">Short film · Valentin Joubrel</span><span class="caw">Nikon FF 2025</span></div></div>
     </div>
 
-    <!-- PROJECT 4 -->
-    <div class="project-card reveal" data-category="script" onclick="openModal('modal-4')">
-      <div class="card-thumb">
-        <img class="card-thumb-img" src="https://cdn.myportfolio.com/947c2f07-ed41-4988-95c3-4874ab5c67f5/548cd9ce-a024-4f33-b76a-fbf86eeb8ced_rwc_955x104x1281x1001x32.png?h=d7c9831dda35361a84d2f822e66e755f" alt="Slapman" loading="lazy" />
-        <div class="card-overlay"><div class="play-icon"><svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><polygon points="5 3 19 12 5 21 5 3"/></svg></div></div>
-      </div>
-      <div class="card-body">
-        <div class="card-year">2025</div>
-        <div class="card-title">"Slapman"</div>
-        <div class="card-role">Script Supervisor</div>
-        <div class="card-footer">
-          <span class="card-type">Short film · Elie Attia</span>
-          <span class="card-award">Nikon FF 2025</span>
-        </div>
-      </div>
+    <div class="pc rv" data-cat="script" data-id="4">
+      <div class="cth"><img src="https://cdn.myportfolio.com/947c2f07-ed41-4988-95c3-4874ab5c67f5/548cd9ce-a024-4f33-b76a-fbf86eeb8ced_rwc_955x104x1281x1001x32.png?h=d7c9831dda35361a84d2f822e66e755f" alt="Slapman" loading="lazy"/><div class="co"><div class="pi"><svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><polygon points="5 3 19 12 5 21 5 3"/></svg></div></div></div>
+      <div class="cb"><div class="cy">2025</div><div class="ct">"Slapman"</div><div class="cr">Script Supervisor</div><div class="cf"><span class="ctype">Short film · Elie Attia</span><span class="caw">Nikon FF 2025</span></div></div>
     </div>
 
-    <!-- PROJECT 5 -->
-    <div class="project-card reveal d1" data-category="script" onclick="openModal('modal-5')">
-      <div class="card-thumb">
-        <img class="card-thumb-img" src="https://cdn.myportfolio.com/947c2f07-ed41-4988-95c3-4874ab5c67f5/f12446bc-7d8c-4700-870e-11d54055fa26_rwc_22x0x613x480x32.jpg?h=57638eb9d1c3dc54c629790f773760fc" alt="Tournesol" loading="lazy" />
-        <div class="card-overlay"><div class="play-icon"><svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><polygon points="5 3 19 12 5 21 5 3"/></svg></div></div>
-      </div>
-      <div class="card-body">
-        <div class="card-year">2025</div>
-        <div class="card-title">"Tournesol"</div>
-        <div class="card-role">Script Supervisor</div>
-        <div class="card-footer">
-          <span class="card-type">Short film · Théo Benoit de Cognac</span>
-          <span class="card-award">Nikon FF 2025</span>
-        </div>
-      </div>
+    <div class="pc rv d1" data-cat="script" data-id="5">
+      <div class="cth"><img src="https://cdn.myportfolio.com/947c2f07-ed41-4988-95c3-4874ab5c67f5/f12446bc-7d8c-4700-870e-11d54055fa26_rwc_22x0x613x480x32.jpg?h=57638eb9d1c3dc54c629790f773760fc" alt="Tournesol" loading="lazy"/><div class="co"><div class="pi"><svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><polygon points="5 3 19 12 5 21 5 3"/></svg></div></div></div>
+      <div class="cb"><div class="cy">2025</div><div class="ct">"Tournesol"</div><div class="cr">Script Supervisor</div><div class="cf"><span class="ctype">Short film · Théo Benoit de Cognac</span><span class="caw">Nikon FF 2025</span></div></div>
     </div>
 
-    <!-- PROJECT 6 -->
-    <div class="project-card reveal d2" data-category="other" onclick="openModal('modal-6')">
-      <div class="card-thumb">
-        <img class="card-thumb-img" src="https://cdn.myportfolio.com/947c2f07-ed41-4988-95c3-4874ab5c67f5/b2d832d3-5ebb-4797-ab5f-68799f6859aa_rwc_450x0x1980x1548x32.png?h=086b3f6a170f77556daf8cbeac8a530e" alt="Parle" loading="lazy" />
-        <div class="card-overlay"><div class="play-icon"><svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><polygon points="5 3 19 12 5 21 5 3"/></svg></div></div>
-      </div>
-      <div class="card-body">
-        <div class="card-year">2025</div>
-        <div class="card-title">"Parle"</div>
-        <div class="card-role">Collaborator</div>
-        <div class="card-footer">
-          <span class="card-type">Short film · Clara Fortuné</span>
-          <span class="card-arrow">→</span>
-        </div>
-      </div>
+    <div class="pc rv d2" data-cat="script ad" data-id="6">
+      <div class="cth"><img src="https://cdn.myportfolio.com/947c2f07-ed41-4988-95c3-4874ab5c67f5/547f4082-2fd7-464d-82e9-2ef736e22f81_rwc_36x0x736x576x32.png?h=e3d23ddcc6187de27f08193808f89beb" alt="Faites moi rêver" loading="lazy"/><div class="co"><div class="pi"><svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><polygon points="5 3 19 12 5 21 5 3"/></svg></div></div></div>
+      <div class="cb"><div class="cy">2023</div><div class="ct">"Faites moi rêver"</div><div class="cr">Production Assistant & Script Supervisor</div><div class="cf"><span class="ctype">Short film · Valentin Joubrel</span><span class="caw">🏆 Grand Prix MAIF</span></div></div>
     </div>
 
-    <!-- PROJECT 7 -->
-    <div class="project-card reveal" data-category="script ad" onclick="openModal('modal-7')">
-      <div class="card-thumb">
-        <img class="card-thumb-img" src="https://cdn.myportfolio.com/947c2f07-ed41-4988-95c3-4874ab5c67f5/547f4082-2fd7-464d-82e9-2ef736e22f81_rwc_36x0x736x576x32.png?h=e3d23ddcc6187de27f08193808f89beb" alt="Faites moi rêver" loading="lazy" />
-        <div class="card-overlay"><div class="play-icon"><svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><polygon points="5 3 19 12 5 21 5 3"/></svg></div></div>
-      </div>
-      <div class="card-body">
-        <div class="card-year">2023</div>
-        <div class="card-title">"Faites moi rêver"</div>
-        <div class="card-role">Production Assistant & Script Supervisor</div>
-        <div class="card-footer">
-          <span class="card-type">Short film · Valentin Joubrel</span>
-          <span class="card-award">🏆 Grand Prix MAIF</span>
-        </div>
-      </div>
+    <div class="pc rv" data-cat="director" data-id="7">
+      <div class="cth"><img src="https://cdn.myportfolio.com/947c2f07-ed41-4988-95c3-4874ab5c67f5/8a273182-f3f3-4dd5-ab3e-cca07177ebf6_rwc_0x5x1233x963x32.jpeg?h=27e845f765ffeddf81a4e9a5b25b7c70" alt="La Parenthèse" loading="lazy"/><div class="co"><div class="pi"><svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><polygon points="5 3 19 12 5 21 5 3"/></svg></div></div></div>
+      <div class="cb"><div class="cy">2025</div><div class="ct">"La Parenthèse"</div><div class="cr">Director</div><div class="cf"><span class="ctype">Short film</span><span class="caw">→</span></div></div>
     </div>
 
-    <!-- PROJECT 8 -->
-    <div class="project-card reveal d1" data-category="director" onclick="openModal('modal-8')">
-      <div class="card-thumb">
-        <img class="card-thumb-img" src="https://cdn.myportfolio.com/947c2f07-ed41-4988-95c3-4874ab5c67f5/8a273182-f3f3-4dd5-ab3e-cca07177ebf6_rwc_0x5x1233x963x32.jpeg?h=27e845f765ffeddf81a4e9a5b25b7c70" alt="La Parenthèse" loading="lazy" />
-        <div class="card-overlay"><div class="play-icon"><svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><polygon points="5 3 19 12 5 21 5 3"/></svg></div></div>
-      </div>
-      <div class="card-body">
-        <div class="card-year">2025</div>
-        <div class="card-title">"La Parenthèse"</div>
-        <div class="card-role">Director</div>
-        <div class="card-footer">
-          <span class="card-type">Short film</span>
-          <span class="card-arrow">→</span>
-        </div>
-      </div>
+    <div class="pc rv d1" data-cat="other" data-id="8">
+      <div class="cth"><img src="https://cdn.myportfolio.com/947c2f07-ed41-4988-95c3-4874ab5c67f5/c7e755f3-cd61-4601-bf97-f32fd506dc95_rwc_402x0x2058x1609x32.png?h=c7d4a58e1c2b8c1dab6b5956a5448cc1" alt="Kick" loading="lazy"/><div class="co"><div class="pi"><svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><polygon points="5 3 19 12 5 21 5 3"/></svg></div></div></div>
+      <div class="cb"><div class="cy">2025</div><div class="ct">"Kick"</div><div class="cr">Director of Photography</div><div class="cf"><span class="ctype">Short film · Clara Fortuné</span><span class="caw">→</span></div></div>
     </div>
 
-    <!-- PROJECT 9 -->
-    <div class="project-card reveal d2" data-category="other" onclick="openModal('modal-9')">
-      <div class="card-thumb">
-        <img class="card-thumb-img" src="https://cdn.myportfolio.com/947c2f07-ed41-4988-95c3-4874ab5c67f5/c7e755f3-cd61-4601-bf97-f32fd506dc95_rwc_402x0x2058x1609x32.png?h=c7d4a58e1c2b8c1dab6b5956a5448cc1" alt="Kick" loading="lazy" />
-        <div class="card-overlay"><div class="play-icon"><svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><polygon points="5 3 19 12 5 21 5 3"/></svg></div></div>
-      </div>
-      <div class="card-body">
-        <div class="card-year">2025</div>
-        <div class="card-title">"Kick"</div>
-        <div class="card-role">Director of Photography</div>
-        <div class="card-footer">
-          <span class="card-type">Short film · Clara Fortuné</span>
-          <span class="card-arrow">→</span>
-        </div>
-      </div>
+    <div class="pc rv d2" data-cat="other" data-id="9">
+      <div class="cth"><img src="https://cdn.myportfolio.com/947c2f07-ed41-4988-95c3-4874ab5c67f5/b2d832d3-5ebb-4797-ab5f-68799f6859aa_rwc_450x0x1980x1548x32.png?h=086b3f6a170f77556daf8cbeac8a530e" alt="Parle" loading="lazy"/><div class="co"><div class="pi"><svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><polygon points="5 3 19 12 5 21 5 3"/></svg></div></div></div>
+      <div class="cb"><div class="cy">2025</div><div class="ct">"Parle"</div><div class="cr">Collaborator</div><div class="cf"><span class="ctype">Short film · Clara Fortuné</span><span class="caw">→</span></div></div>
     </div>
 
   </div>
-  <footer>
-    <p>© 2026 — Daphnée Levy</p>
-    <p class="ft-quote">"The set is where I belong."</p>
-    <p>Director · AD · Script Supervisor · Paris</p>
-  </footer>
+  <footer><p>© 2026 — Daphnée Levy</p><p class="fq">"The set is where I belong."</p><p>Director · AD · Script Supervisor</p></footer>
 </div>
 
-<!-- ══ ABOUT PAGE ══ -->
-<div id="page-about" class="page">
-  <div class="about-wrap">
-    <div class="about-hero">
-      <div class="about-photo-box reveal">
-        <div class="about-photo">
-          <div class="about-photo-ph">
-            <svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width=".8"><circle cx="12" cy="8" r="4"/><path d="M4 20c0-4 3.6-7 8-7s8 3 8 7"/></svg>
+<!-- MODAL -->
+<div class="mo" id="mo">
+  <div class="md">
+    <button class="mc" id="mclose">✕</button>
+    <div id="mmedia"></div>
+    <div class="mi">
+      <div class="mt" id="mtitle"></div>
+      <div class="mr" id="mrole"></div>
+      <div class="md2" id="mdesc"></div>
+      <div class="mm" id="mmeta"></div>
+    </div>
+  </div>
+</div>
+
+<!-- ABOUT -->
+<div id="pg-about" class="pg">
+  <div class="aw">
+    <div class="ag">
+      <div class="apb rv">
+        <div class="ap">
+          <div class="apph">
+            <svg width="44" height="44" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width=".8"><circle cx="12" cy="8" r="4"/><path d="M4 20c0-4 3.6-7 8-7s8 3 8 7"/></svg>
             <p>Your photo here</p>
           </div>
         </div>
-        <div class="about-frame2"></div>
+        <div class="af"></div>
       </div>
-      <div class="about-content reveal d1">
+      <div class="ac rv d1">
         <div class="stag">About</div>
         <h1>Daphnée<br/><em>Levy</em></h1>
-        <div class="about-roles">
-          <span class="about-role-tag hi">Director</span>
-          <span class="about-role-tag hi">Assistant Director</span>
-          <span class="about-role-tag hi">Script Supervisor</span>
-          <span class="about-role-tag">Editor</span>
-          <span class="about-role-tag">Director of Photography</span>
+        <div class="aroles">
+          <span class="ar hi">Director</span>
+          <span class="ar hi">Assistant Director</span>
+          <span class="ar hi">Script Supervisor</span>
+          <span class="ar">Editor</span>
+          <span class="ar">Director of Photography</span>
         </div>
-        <div class="about-bio">
+        <div class="abio">
           <p>Master's graduate in <strong>Directing & Screenwriting</strong> from ESIS (École Supérieure de l'Image et du Son, Paris), I have built my career across both sides of the camera — with a strong pull toward the set, the crew, and the invisible work that makes a film hold together.</p>
-          <div class="about-quote2">"Having completed my Master 2 at ESIS and my work-study program at Lux Artists, I am now actively seeking new opportunities in film and audiovisual production."</div>
+          <p class="aq">"Having completed my Master 2 at ESIS and my work-study at Lux Artists, I am actively seeking new opportunities in film and audiovisual production."</p>
           <p>Versatile and detail-oriented, I move between <strong>script supervision</strong>, <strong>assistant directing</strong>, and <strong>directing</strong> — on award-winning short films, Nikon Film Festival selections, and creative video content.</p>
         </div>
-        <div class="about-stats">
-          <div><div class="snum">7+</div><div class="slbl">Years exp.</div></div>
-          <div><div class="snum">15+</div><div class="slbl">Projects</div></div>
-          <div><div class="snum">Paris</div><div class="slbl">15th arr.</div></div>
+        <div class="ast">
+          <div><div class="sn">7+</div><div class="sl">Years exp.</div></div>
+          <div><div class="sn">15+</div><div class="sl">Projects</div></div>
+          <div><div class="sn">Paris</div><div class="sl">15th arr.</div></div>
         </div>
       </div>
     </div>
-
-    <div class="divider" style="margin-bottom:4rem;"></div>
-
-    <div class="about-grid2">
-      <div class="about-block reveal">
+    <div class="div"></div>
+    <div class="ag2">
+      <div class="ab2 rv">
         <h3>Education</h3>
-        <div class="edu-item">
-          <div class="edu-year">2022 — 2024</div>
-          <div class="edu-school">ESIS — École Supérieure de l'Image et du Son</div>
-          <div class="edu-degree">Master 2 — Directing & Fiction Screenwriting<br/>Master 1 — Directing & Screenwriting</div>
-        </div>
-        <div class="edu-item">
-          <div class="edu-year">2018 — 2021</div>
-          <div class="edu-school">Université Sorbonne Nouvelle — Paris 3</div>
-          <div class="edu-degree">Bachelor's Degree in Cinema & Audiovisual<br/>Film Production · Film Analysis · Film Law</div>
-        </div>
-        <div class="edu-item">
-          <div class="edu-year">2019 — 2020</div>
-          <div class="edu-school">L'entrée des Artistes</div>
-          <div class="edu-degree">Theatre & Acting Training<br/>Stage: "L'homme face à la caméra" — Hubert Gillet</div>
-        </div>
+        <div class="ei"><div class="ey">2022 — 2024</div><div class="es">ESIS — École Supérieure de l'Image et du Son</div><div class="ed">Master 2 — Directing & Fiction Screenwriting<br/>Master 1 — Directing & Screenwriting</div></div>
+        <div class="ei"><div class="ey">2018 — 2021</div><div class="es">Université Sorbonne Nouvelle — Paris 3</div><div class="ed">Bachelor's in Cinema & Audiovisual<br/>Film Production · Film Analysis · Film Law</div></div>
+        <div class="ei"><div class="ey">2019 — 2020</div><div class="es">L'entrée des Artistes</div><div class="ed">Theatre & Acting Training<br/>Stage: "L'homme face à la caméra" — Hubert Gillet</div></div>
       </div>
-
-      <div class="about-block reveal d1">
+      <div class="ab2 rv d1">
         <h3>Skills & Tools</h3>
-        <div class="skills-list">
-          <div class="skill-row"><div class="skill-name-row"><span class="skill-label">Script Supervision</span><span class="skill-pct">●●●●●</span></div></div>
-          <div class="skill-row"><div class="skill-name-row"><span class="skill-label">Directing</span><span class="skill-pct">●●●●○</span></div></div>
-          <div class="skill-row"><div class="skill-name-row"><span class="skill-label">Assistant Directing</span><span class="skill-pct">●●●●○</span></div></div>
-          <div class="skill-row"><div class="skill-name-row"><span class="skill-label">Editing</span><span class="skill-pct">●●●○○</span></div></div>
-          <div class="skill-row"><div class="skill-name-row"><span class="skill-label">Production</span><span class="skill-pct">●●●○○</span></div></div>
+        <div class="tg">
+          <span class="tgi" style="border-color:var(--or);color:var(--or)">Script Supervision</span>
+          <span class="tgi" style="border-color:var(--or);color:var(--or)">Assistant Directing</span>
+          <span class="tgi" style="border-color:var(--or);color:var(--or)">Directing</span>
+          <span class="tgi">Editing</span><span class="tgi">DOP</span>
+          <span class="tgi">Premiere Pro</span><span class="tgi">DaVinci Resolve</span>
+          <span class="tgi">Photoshop</span><span class="tgi">InDesign</span>
+          <span class="tgi">WordPress</span><span class="tgi">Excel</span>
+          <span class="tgi">Final Draft</span><span class="tgi">InEntertainment</span>
         </div>
-        <div class="tools-grid">
-          <span class="tool-tag">Premiere Pro</span>
-          <span class="tool-tag">DaVinci Resolve</span>
-          <span class="tool-tag">Photoshop</span>
-          <span class="tool-tag">InDesign</span>
-          <span class="tool-tag">WordPress</span>
-          <span class="tool-tag">Excel</span>
-          <span class="tool-tag">InEntertainment</span>
-          <span class="tool-tag">Final Draft</span>
-        </div>
-        <div style="margin-top:2rem;">
-          <div class="card-lbl" style="font-family:'DM Mono',monospace;font-size:.58rem;letter-spacing:.3em;text-transform:uppercase;color:var(--or);margin-bottom:1rem;">Languages</div>
-          <div class="tools-grid">
-            <span class="tool-tag" style="border-color:var(--or);color:var(--or);">French — Native</span>
-            <span class="tool-tag">English — Professional</span>
-            <span class="tool-tag">Spanish — Intermediate</span>
+        <div style="margin-top:1.8rem">
+          <div class="stag" style="margin-bottom:.8rem">Languages</div>
+          <div class="tg">
+            <span class="tgi" style="border-color:var(--or);color:var(--or)">French — Native</span>
+            <span class="tgi">English — Professional</span>
+            <span class="tgi">Spanish — Intermediate</span>
           </div>
         </div>
       </div>
     </div>
   </div>
-  <footer>
-    <p>© 2026 — Daphnée Levy</p>
-    <p class="ft-quote">"The set is where I belong."</p>
-    <p>Director · AD · Script Supervisor · Paris</p>
-  </footer>
+  <footer><p>© 2026 — Daphnée Levy</p><p class="fq">"The set is where I belong."</p><p>Director · AD · Script Supervisor</p></footer>
 </div>
 
-<!-- ══ CONTACT PAGE ══ -->
-<div id="page-contact" class="page">
-  <div class="contact-wrap">
-    <div class="reveal">
+<!-- CONTACT -->
+<div id="pg-contact" class="pg">
+  <div class="cw">
+    <div class="rv">
       <div class="stag">Contact</div>
-      <h1 class="contact-left">Let's work<br/><em>together</em></h1>
-      <p class="contact-p">Available for collaborations on short films, music videos, commercials or any audiovisual project. I always reply.</p>
-      <div class="clinks">
-        <a href="/cdn-cgi/l/email-protection#31555041595f54545d5447480271565c50585d1f525e5c" class="cl"><span class="__cf_email__" data-cfemail="432722332b2d26262f26353a7003242e222a2f6d202c2e">[email&#160;protected]</span><span>Email →</span></a>
-        <a href="https://linkedin.com" class="cl" target="_blank">LinkedIn<span>Profile →</span></a>
-        <a href="tel:+33698550102" class="cl">06 98 55 01 02<span>Call →</span></a>
-        <a href="https://daphneelevy.com" class="cl" target="_blank">daphneelevy.com<span>Website →</span></a>
+      <h1 class="cl2"><em>Let's work</em><br/>together</h1>
+      <p class="cp">Available for short films, music videos, commercials or any audiovisual project. I always reply.</p>
+      <div class="clk">
+        <a href="mailto:daphneelevy3@gmail.com" class="clka">daphneelevy3@gmail.com<span>Email →</span></a>
+        <a href="https://linkedin.com" class="clka" target="_blank">LinkedIn<span>Profile →</span></a>
+        <a href="tel:+33698550102" class="clka">06 98 55 01 02<span>Call →</span></a>
       </div>
     </div>
-    <div class="info-cards reveal d1">
-      <div class="ic"><div class="ic-lbl">Availability</div><div class="ic-val">Open to new projects</div></div>
-      <div class="ic"><div class="ic-lbl">Location</div><div class="ic-val">Paris 15th, France</div></div>
-      <div class="ic"><div class="ic-lbl">Languages</div><div class="ic-val">French · English · Spanish</div></div>
-      <div class="ic"><div class="ic-lbl">Education</div><div class="ic-val">Master 2 ESIS — Directing & Screenwriting</div></div>
+    <div class="ic2 rv d1">
+      <div class="ic2i"><div class="ic2l">Availability</div><div class="ic2v">Open to new projects</div></div>
+      <div class="ic2i"><div class="ic2l">Location</div><div class="ic2v">Paris 15th, France</div></div>
+      <div class="ic2i"><div class="ic2l">Languages</div><div class="ic2v">French · English · Spanish</div></div>
+      <div class="ic2i"><div class="ic2l">Education</div><div class="ic2v">Master 2 ESIS — Directing & Screenwriting</div></div>
     </div>
   </div>
-  <footer>
-    <p>© 2026 — Daphnée Levy</p>
-    <p class="ft-quote">"The set is where I belong."</p>
-    <p>Director · AD · Script Supervisor · Paris</p>
-  </footer>
-</div>
-
-<!-- ══ MODALS ══ -->
-<div class="modal-overlay" id="modal-overlay" onclick="closeModal(event)">
-  <div class="modal" id="modal-content">
-    <button class="modal-close" onclick="closeModalBtn()">✕</button>
-    <div id="modal-media"></div>
-    <div class="modal-info">
-      <div class="modal-title" id="modal-title"></div>
-      <div class="modal-role" id="modal-role"></div>
-      <div class="modal-desc" id="modal-desc"></div>
-      <div class="modal-meta" id="modal-meta"></div>
-    </div>
-  </div>
+  <footer><p>© 2026 — Daphnée Levy</p><p class="fq">"The set is where I belong."</p><p>Director · AD · Script Supervisor</p></footer>
 </div>
 
 <script>
-// ── DATA ──
-// To add a video: set type to 'youtube', 'vimeo', or 'upload'
-// For YouTube: videoId = 'dQw4w9WgXcQ' (the part after watch?v=)
-// For Vimeo: videoId = '123456789'
-// For uploaded file: videoSrc = 'videos/myfilm.mp4'
-const projects = {
-  'modal-1': { title:'"L\'Étoile Rose"', role:'Script Supervisor', year:'2026', type:'Short film', director:'Albert Joffo', award:'Nikon Film Festival 2026', desc:'Short film directed by Albert Joffo, selected at the Nikon Film Festival 2026.', video:{ type:'none' } },
-  'modal-2': { title:'"À quel prix"', role:'Script Supervisor', year:'2026', type:'Short film', director:'Aurore Knol', award:'Nikon Film Festival 2026', desc:'Short film directed by Aurore Knol, selected at the Nikon Film Festival 2026.', video:{ type:'none' } },
-  'modal-3': { title:'"En toute transparence"', role:'Assistant Director', year:'2025', type:'Short film', director:'Valentin Joubrel', award:'Nikon Film Festival 2025', desc:'Short film directed by Valentin Joubrel, selected at the Nikon Film Festival 2025.', video:{ type:'none' } },
-  'modal-4': { title:'"Slapman"', role:'Script Supervisor', year:'2025', type:'Short film', director:'Elie Attia', award:'Nikon Film Festival 2025', desc:'Short film directed by Elie Attia, selected at the Nikon Film Festival 2025.', video:{ type:'none' } },
-  'modal-5': { title:'"Tournesol"', role:'Script Supervisor', year:'2025', type:'Short film', director:'Théo Benoit de Cognac', award:'Nikon Film Festival 2025', desc:'Short film directed by Théo Benoit de Cognac, selected at the Nikon Film Festival 2025.', video:{ type:'none' } },
-  'modal-6': { title:'"Parle"', role:'Collaborator', year:'2025', type:'Short film', director:'Clara Fortuné', award:'', desc:'Short film directed by Clara Fortuné.', video:{ type:'none' } },
-  'modal-7': { title:'"Faites moi rêver"', role:'Production Assistant & Script Supervisor', year:'2023', type:'Short film', director:'Valentin Joubrel', award:'🏆 1st Place — Grand Prix MAIF', desc:'Award-winning short film directed by Valentin Joubrel. Winner of the Grand Prix des écoles de la Fondation MAIF.', video:{ type:'none' } },
-  'modal-8': { title:'"La Parenthèse"', role:'Director', year:'2025', type:'Short film', director:'Daphnée Levy', award:'', desc:'Short film written and directed by Daphnée Levy.', video:{ type:'none' } },
-  'modal-9': { title:'"Kick"', role:'Director of Photography', year:'2025', type:'Short film', director:'Clara Fortuné', award:'', desc:'Short film directed by Clara Fortuné.', video:{ type:'none' } },
+var PAGES = ['home','works','about','contact'];
+var projects = {
+  1:{title:'"L\'Étoile Rose"',role:'Script Supervisor',year:'2026',type:'Short film',dir:'Albert Joffo',award:'Nikon FF 2026',desc:'Short film directed by Albert Joffo.',video:{type:'none'}},
+  2:{title:'"À quel prix"',role:'Script Supervisor',year:'2026',type:'Short film',dir:'Aurore Knol',award:'Nikon FF 2026',desc:'Short film directed by Aurore Knol.',video:{type:'none'}},
+  3:{title:'"En toute transparence"',role:'Assistant Director',year:'2025',type:'Short film',dir:'Valentin Joubrel',award:'Nikon FF 2025',desc:'Short film directed by Valentin Joubrel.',video:{type:'none'}},
+  4:{title:'"Slapman"',role:'Script Supervisor',year:'2025',type:'Short film',dir:'Elie Attia',award:'Nikon FF 2025',desc:'Short film directed by Elie Attia.',video:{type:'none'}},
+  5:{title:'"Tournesol"',role:'Script Supervisor',year:'2025',type:'Short film',dir:'Théo Benoit de Cognac',award:'Nikon FF 2025',desc:'Short film directed by Théo Benoit de Cognac.',video:{type:'none'}},
+  6:{title:'"Faites moi rêver"',role:'Production Assistant & Script Supervisor',year:'2023',type:'Short film',dir:'Valentin Joubrel',award:'🏆 Grand Prix MAIF',desc:'Award-winning short film. Winner of the Grand Prix MAIF.',video:{type:'none'}},
+  7:{title:'"La Parenthèse"',role:'Director',year:'2025',type:'Short film',dir:'Daphnée Levy',award:'',desc:'Short film written and directed by Daphnée Levy.',video:{type:'none'}},
+  8:{title:'"Kick"',role:'Director of Photography',year:'2025',type:'Short film',dir:'Clara Fortuné',award:'',desc:'Short film directed by Clara Fortuné.',video:{type:'none'}},
+  9:{title:'"Parle"',role:'Collaborator',year:'2025',type:'Short film',dir:'Clara Fortuné',award:'',desc:'Short film directed by Clara Fortuné.',video:{type:'none'}}
 };
 
-// ── MOBILE MENU ──
-function toggleMenu() {
-  const menu = document.getElementById('mobile-menu');
-  const burger = document.getElementById('hamburger');
-  menu.classList.toggle('open');
-  burger.classList.toggle('open');
-}
-
-// ── NAVIGATION ──
-function showPage(name) {
-  document.querySelectorAll('.page').forEach(p => p.classList.remove('active'));
-  document.querySelectorAll('.nav-links a').forEach(a => a.classList.remove('active'));
-  document.getElementById('page-' + name).classList.add('active');
-  document.querySelector(`[data-page="${name}"]`).classList.add('active');
-  window.scrollTo(0, 0);
-  setTimeout(triggerReveals, 100);
-}
-
-// ── FILTER ──
-function filterWorks(cat, btn) {
-  document.querySelectorAll('.filter-btn').forEach(b => b.classList.remove('active'));
-  btn.classList.add('active');
-  document.querySelectorAll('.project-card').forEach(card => {
-    if (cat === 'all' || card.dataset.category.includes(cat)) {
-      card.style.display = '';
-    } else {
-      card.style.display = 'none';
-    }
+function goTo(name) {
+  PAGES.forEach(function(p) {
+    document.getElementById('pg-'+p).style.display = (p===name)?'block':'none';
   });
+  document.querySelectorAll('[data-p]').forEach(function(a) {
+    a.classList.toggle('on', a.getAttribute('data-p')===name);
+  });
+  window.scrollTo(0,0);
+  setTimeout(function() {
+    document.querySelectorAll('.rv:not(.vis)').forEach(function(el) {
+      var obs = new IntersectionObserver(function(entries) {
+        entries.forEach(function(e) { if(e.isIntersecting) e.target.classList.add('vis'); });
+      },{threshold:.1});
+      obs.observe(el);
+    });
+  },100);
 }
 
-// ── MODAL ──
-function openModal(id) {
-  const p = projects[id];
-  if (!p) return;
-  const media = document.getElementById('modal-media');
-  if (p.video.type === 'youtube') {
-    media.innerHTML = `<div class="modal-video"><iframe src="https://www.youtube.com/embed/${p.video.videoId}?autoplay=1" allow="autoplay; fullscreen" allowfullscreen></iframe></div>`;
-  } else if (p.video.type === 'vimeo') {
-    media.innerHTML = `<div class="modal-video"><iframe src="https://player.vimeo.com/video/${p.video.videoId}?autoplay=1" allow="autoplay; fullscreen" allowfullscreen></iframe></div>`;
-  } else if (p.video.type === 'upload') {
-    media.innerHTML = `<div class="modal-video-upload"><video controls autoplay src="${p.video.videoSrc}"></video></div>`;
-  } else {
-    media.innerHTML = `<div style="aspect-ratio:16/9;background:var(--bx1);display:flex;align-items:center;justify-content:center;"><p style="font-family:'DM Mono',monospace;font-size:.6rem;letter-spacing:.2em;text-transform:uppercase;color:var(--doux);">Video coming soon</p></div>`;
-  }
-  document.getElementById('modal-title').textContent = p.title;
-  document.getElementById('modal-role').textContent = p.role;
-  document.getElementById('modal-desc').textContent = p.desc;
-  document.getElementById('modal-meta').innerHTML = `
-    <div class="modal-meta-item"><span>Year</span><p>${p.year}</p></div>
-    <div class="modal-meta-item"><span>Type</span><p>${p.type}</p></div>
-    <div class="modal-meta-item"><span>Director</span><p>${p.director}</p></div>
-    ${p.award ? `<div class="modal-meta-item"><span>Award</span><p>${p.award}</p></div>` : ''}
-  `;
-  document.getElementById('modal-overlay').classList.add('open');
-}
-function closeModal(e) { if (e.target === document.getElementById('modal-overlay')) closeModalBtn(); }
-function closeModalBtn() {
-  document.getElementById('modal-overlay').classList.remove('open');
-  document.getElementById('modal-media').innerHTML = '';
-}
+// Nav
+document.querySelectorAll('[data-p]').forEach(function(a) {
+  a.addEventListener('click', function(e) { e.preventDefault(); goTo(this.getAttribute('data-p')); closeMM(); });
+});
+document.getElementById('nl').addEventListener('click', function() { goTo('home'); closeMM(); });
+document.getElementById('bw').addEventListener('click', function() { goTo('works'); });
+document.getElementById('bc').addEventListener('click', function() { goTo('contact'); });
 
-// ── FILMSTRIP ──
-const fs=document.getElementById('fs');
-for(let i=0;i<32;i++){ const h=document.createElement('div'); h.className='fhole'; fs.appendChild(h); }
+// Mobile menu
+function closeMM() {
+  document.getElementById('mm').classList.remove('open');
+  document.getElementById('bg').classList.remove('open');
+}
+document.getElementById('bg').addEventListener('click', function() {
+  document.getElementById('mm').classList.toggle('open');
+  this.classList.toggle('open');
+});
+document.querySelectorAll('[data-pm]').forEach(function(a) {
+  a.addEventListener('click', function(e) { e.preventDefault(); goTo(this.getAttribute('data-pm')); closeMM(); });
+});
 
-// ── REVEAL ON SCROLL ──
-function triggerReveals() {
-  const obs = new IntersectionOb
+// Filter
+document.querySelectorAll('.fb').forEach(function(btn) {
+  btn.addEventListener('click', function() {
+    document.querySelectorAll('.fb').forEach(function(b) { b.classList.remove('on'); });
+    this.classList.add('on');
+    var cat = this.getAttribute('data-cat');
+    document.querySelectorAll('.pc').forEach(function(card) {
+      card.style.display = (cat==='all' || card.getAttribute('data-cat').indexOf(cat)>=0) ? '' : 'none';
+    });
+  });
+});
+
+// Project cards → modal
+document.querySelectorAll('.pc').forEach(function(card) {
+  card.addEventListener('click', function() {
+    var id = parseInt(this.getAttribute('data-id'));
+    var p = projects[id];
+    if(!p) return;
+    if(p.video.type==='youtube') {
+      document.getElementById('mmedia').innerHTML = '<div class="mv"><iframe src="https://www.youtube.com/embed/'+p.video.videoId+'?autoplay=1" allow="autoplay; fullscreen" allowfullscreen></iframe></div>';
+    } else if(p.video.type==='vimeo') {
+      document.getElementById('mmedia').innerHTML = '<div class="mv"><iframe src="https://player.vimeo.com/video/'+p.video.videoId+'?autoplay=1" allow="autoplay; fullscreen" allowfullscreen></iframe></div>';
+    } else {
+      document.getElementById('mmedia').innerHTML = '<div class="mvp"><p>Video coming soon</p></div>';
+    }
+    document.getElementById('mtitle').textContent = p.title;
+    document.getElementById('mrole').textContent = p.role;
+    document.getElementById('mdesc').textContent = p.desc;
+    document.getElementById('mmeta').innerHTML =
+      '<div class="mmi"><span>Year</span><p>'+p.year+'</p></div>'+
+      '<div class="mmi"><span>Type</span><p>'+p.type+'</p></div>'+
+      '<div class="mmi"><span>Director</span><p>'+p.dir+'</p></div>'+
+      (p.award?'<div class="mmi"><span>Award</span><p>'+p.award+'</p></div>':'');
+    document.getElementById('mo').classList.add('open');
+  });
+});
+
+// Close modal
+document.getElementById('mclose').addEventListener('click', function() {
+  document.getElementById('mo').classList.remove('open');
+  document.getElementById('mmedia').innerHTML = '';
+});
+document.getElementById('mo').addEventListener('click', function(e) {
+  if(e.target===this) { this.classList.remove('open'); document.getElementById('mmedia').innerHTML = ''; }
+});
+
+// Filmstrip
+var fs = document.getElementById('fs');
+for(var i=0;i<32;i++) { var h=document.createElement('div'); h.className='fh'; fs.appendChild(h); }
+
+// Init reveals
+document.querySelectorAll('.rv').forEach(function(el) {
+  var obs = new IntersectionObserver(function(entries) {
+    entries.forEach(function(e) { if(e.isIntersecting) e.target.classList.add('vis'); });
+  },{threshold:.1});
+  obs.observe(el);
+});
+</script>
+</body>
+</html>
