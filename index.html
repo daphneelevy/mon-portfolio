@@ -376,18 +376,18 @@ footer p{font-family:'DM Mono',monospace;font-size:.53rem;letter-spacing:.18em;t
 <!-- CONTACT -->
 <div id="pg-contact" class="pg">
   <div class="cw">
-    <div class="rv">
+    <div class="">
       <div class="stag">Contact</div>
       <h1 class="cl2"><em>Let's work</em><br/>together</h1>
       <p class="cp">Available for short films, music videos, commercials or any audiovisual project. I always reply.</p>
       <div class="clk">
-        <a href="/cdn-cgi/l/email-protection#7c181d0c1412191910190a054f3c1b111d1510521f1311" class="clka"><span class="__cf_email__" data-cfemail="ea8e8b9a82848f8f868f9c93d9aa8d878b8386c4898587">[email&#160;protected]</span><span>Email →</span></a>
+        <a id="em-link" href="#" class="clka" data-cfasync="false"><span id="em-txt">daphneelevy3@gmail.com</span><span>Email →</span></a>
         <a href="https://linkedin.com" class="clka" target="_blank">LinkedIn<span>Profile →</span></a>
         <a href="tel:+33698550102" class="clka">06 98 55 01 02<span>Call →</span></a>
         <a href="CV_Daphneelevy.pdf" download class="clka">Télécharger mon CV<span>PDF →</span></a>
       </div>
     </div>
-    <div class="ic2 rv d1">
+    <div class="ic2">
       <div class="ic2i"><div class="ic2l">Availability</div><div class="ic2v">Open to new projects</div></div>
       <div class="ic2i"><div class="ic2l">Location</div><div class="ic2v">Paris 15th, France</div></div>
       <div class="ic2i"><div class="ic2l">Languages</div><div class="ic2v">French · English · Spanish</div></div>
@@ -421,14 +421,9 @@ function goTo(name) {
     a.classList.toggle('on', a.getAttribute('data-p')===name);
   });
   window.scrollTo(0,0);
-  setTimeout(function() {
-    document.querySelectorAll('.rv:not(.vis)').forEach(function(el) {
-      var obs = new IntersectionObserver(function(entries) {
-        entries.forEach(function(e) { if(e.isIntersecting) e.target.classList.add('vis'); });
-      },{threshold:.1});
-      obs.observe(el);
-    });
-  },100);
+  document.querySelectorAll('#pg-'+name+' .rv').forEach(function(el) {
+    el.classList.add('vis');
+  });
 }
 
 // Nav
@@ -503,13 +498,21 @@ document.getElementById('mo').addEventListener('click', function(e) {
 var fs = document.getElementById('fs');
 for(var i=0;i<32;i++) { var h=document.createElement('div'); h.className='fh'; fs.appendChild(h); }
 
-// Init reveals
+// Init reveals — force visible sur home, observer sur le reste
+document.querySelectorAll('#pg-home .rv').forEach(function(el) { el.classList.add('vis'); });
 document.querySelectorAll('.rv').forEach(function(el) {
   var obs = new IntersectionObserver(function(entries) {
     entries.forEach(function(e) { if(e.isIntersecting) e.target.classList.add('vis'); });
-  },{threshold:.1});
+  },{threshold:.05});
   obs.observe(el);
 });
+
+// Email anti-Cloudflare
+(function(){
+  var u='daphneelevy3';var d='gmail.com';var e=u+'@'+d;
+  var a=document.getElementById('em-link');
+  if(a){a.href='mailto:'+e;document.getElementById('em-txt').textContent=e;}
+})();
 
 }); // end DOMContentLoaded
 </script>
