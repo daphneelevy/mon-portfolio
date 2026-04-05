@@ -381,7 +381,7 @@ footer p{font-family:'DM Mono',monospace;font-size:.53rem;letter-spacing:.18em;t
       <h1 class="cl2"><em>Let's work</em><br/>together</h1>
       <p class="cp">Available for short films, music videos, commercials or any audiovisual project. I always reply.</p>
       <div class="clk">
-        <a id="em-link" href="#" class="clka" data-cfasync="false"><span id="em-txt">daphneelevy3&#64;gmail.com</span><span>Email →</span></a>
+        <a id="em-link" href="#" class="clka"><span id="em-txt">...</span><span>Email →</span></a>
         <a href="https://linkedin.com" class="clka" target="_blank">LinkedIn<span>Profile →</span></a>
         <a href="tel:+33698550102" class="clka">06 98 55 01 02<span>Call →</span></a>
         <a href="CV_Daphneelevy.pdf" download class="clka">Télécharger mon CV<span>PDF →</span></a>
@@ -509,4 +509,14 @@ document.querySelectorAll('.rv').forEach(function(el) {
 
 // Email anti-Cloudflare
 (function(){
-  var u='daphneelevy3';var d='gmai
+  var u='daphneelevy3';
+  var d='g'+'mail'+'.com';
+  var e=u+'@'+d;
+  var a=document.getElementById('em-link');
+  if(a){ a.href='mai'+'lto:'+e; document.getElementById('em-txt').textContent=e; }
+})();
+
+}); // end DOMContentLoaded
+</script>
+</body>
+</html>
