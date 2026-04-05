@@ -398,7 +398,7 @@ footer p{font-family:'DM Mono',monospace;font-size:.53rem;letter-spacing:.18em;t
 </div>
 
 <script data-cfasync="false">
-
+function init(){
 var PAGES = ['home','works','about','contact'];
 var projects = {
   1:{title:'"L\'Étoile Rose"',role:'Script Supervisor',year:'2026',type:'Short film',dir:'Albert Joffo',award:'Nikon FF 2026',desc:'Short film directed by Albert Joffo.',video:{type:'youtube',videoId:'j_OveGDZqno'}},
@@ -514,8 +514,14 @@ document.querySelectorAll('.rv').forEach(function(el) {
   var a=document.getElementById('em-link');
   if(a){ a.href='mai'+'lto:'+e; document.getElementById('em-txt').textContent=e; }
 })();
-
-
+}
+if(document.readyState==='loading'){
+  document.addEventListener('DOMContentLoaded', init);
+} else {
+  init();
+}
+}
+if(document.readyState==="loading"){document.addEventListener("DOMContentLoaded",init);}else{init();}
 </script>
 </body>
 </html>
