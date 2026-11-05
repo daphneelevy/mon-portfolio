@@ -169,6 +169,89 @@ nav{position:fixed;top:0;left:0;right:0;z-index:100;display:flex;justify-content
 .ic2l{font-family:'DM Mono',monospace;font-size:.53rem;letter-spacing:.28em;text-transform:uppercase;color:var(--or);margin-bottom:.4rem}
 .ic2v{font-style:italic;font-size:.95rem;color:var(--tx)}
 
+/* BLONDIE FILMS */
+:root{--bf:#2fb6b6}
+.lw{display:flex;align-items:center;gap:1.1rem}
+.bfopt{font-style:italic;font-size:1.1rem;color:var(--bf);opacity:.75;cursor:pointer;text-decoration:none;white-space:nowrap;transition:opacity .3s;padding-left:1.1rem;border-left:1px solid rgba(47,182,182,.35);line-height:1}
+.bfopt:hover,.bfopt.on{opacity:1}
+body.bf .xrt{background:rgba(4,26,29,.82)}
+body.bf .logo{color:#c8a050;opacity:.75;transition:opacity .3s}
+body.bf .logo:hover{opacity:1}
+body.bf{--bg:#041a1d;--bg2:#08292e;--bg3:#0d3a41;--bg4:#1f6670;--or:#2fb6b6;--orp:#86dcd6;--tx:#e3f1ef;--mx:#8fb5b5;--fi:rgba(47,182,182,.24);--od:rgba(47,182,182,.12)}
+body.bf nav{background:rgba(4,26,29,.95)}
+body.bf .ic2i{background:rgba(4,26,29,.6);border-color:rgba(47,182,182,.18)}
+body.bf .clka{border-top-color:rgba(47,182,182,.16)}
+body.bf .clka:last-child{border-bottom-color:rgba(47,182,182,.16)}
+body.bf .xrt{background:rgba(4,26,29,.6)}
+body.bf .mo{background:rgba(4,26,29,.92)}
+body.bf footer{border-top-color:rgba(47,182,182,.16)}
+
+/* ANNEX */
+#pg-annex{padding-top:7rem}
+.xh{padding:3rem 4rem 2rem;max-width:960px}
+.xh h1{font-size:clamp(2.5rem,5vw,4rem);font-weight:900;line-height:1;color:var(--orp)}
+.xh h1 em{font-style:italic;color:var(--or)}
+.xh p{color:var(--mx);font-size:.92rem;line-height:1.8;margin-top:1.2rem;font-family:'DM Mono',monospace;letter-spacing:.03em}
+.xsv{padding:1rem 4rem 3rem;display:grid;grid-template-columns:repeat(3,1fr);gap:3px}
+.xcard{background:var(--bg2);padding:2rem 1.8rem;border-top:1px solid var(--fi);transition:background .3s}
+.xcard:hover{background:var(--bg3)}
+.xn{font-family:'DM Mono',monospace;font-size:.52rem;letter-spacing:.2em;color:var(--or);margin-bottom:.8rem}
+.xcard h3{font-size:1.2rem;font-weight:700;color:var(--tx);margin-bottom:.5rem}
+.xcard p{color:var(--mx);font-size:.82rem;line-height:1.75;font-family:'DM Mono',monospace;letter-spacing:.02em}
+.xsec{padding:2rem 4rem 3rem}
+.xf{display:flex;gap:1.6rem;flex-wrap:wrap;margin-top:1.4rem}
+.xfb{background:none;border:0;border-bottom:1px solid transparent;font-family:'DM Mono',monospace;font-size:.6rem;letter-spacing:.2em;text-transform:uppercase;color:var(--mx);padding:.3rem 0;cursor:pointer;transition:all .3s}
+.xfb:hover{color:var(--tx)}
+.xfb.on{color:var(--or);border-bottom-color:var(--or)}
+.xp{margin-top:1.2rem}
+.xs{margin-top:3.2rem}
+.xs:first-child{margin-top:1.6rem}
+.xsh{display:flex;align-items:baseline;gap:1rem;margin-bottom:1.1rem}
+.xsh h3{font-style:italic;font-weight:400;font-size:1.7rem;color:var(--or);line-height:1.1}
+.xsh span{font-family:'DM Mono',monospace;font-size:.52rem;letter-spacing:.2em;text-transform:uppercase;color:var(--mx)}
+.xg{display:flex;flex-direction:column;gap:3px}
+.xb{display:grid;grid-template-columns:repeat(4,1fr);grid-template-rows:repeat(6,1fr);gap:3px;aspect-ratio:4/3}
+.xpc{background:var(--bg2);position:relative;overflow:hidden;cursor:pointer;grid-area:var(--ga)}
+.xpc img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;transition:transform .6s}
+.xpc:hover img{transform:scale(1.04)}
+.xpc.xl img{object-position:50% var(--lp)}
+.xpc.xt img{object-position:var(--tp) 50%}
+.xscs .xsc{margin-top:2.4rem;cursor:pointer}
+.xscs .xsc:first-child{margin-top:1.6rem}
+.xsh .xall{margin-left:auto;font-style:normal;font-family:'DM Mono',monospace;font-size:.52rem;letter-spacing:.2em;text-transform:uppercase;color:var(--or);white-space:nowrap;transition:opacity .3s}
+.xsc:hover .xall{opacity:.65}
+.xmq{overflow:hidden;-webkit-mask-image:linear-gradient(90deg,transparent,#000 5%,#000 95%,transparent);mask-image:linear-gradient(90deg,transparent,#000 5%,#000 95%,transparent)}
+.xmt{display:flex;gap:3px;width:max-content;animation:xmq 50s linear infinite}
+.xsc:hover .xmt{animation-play-state:paused}
+.xpv{height:190px;aspect-ratio:2/3;flex:none;overflow:hidden;background:var(--bg2)}
+.xpv img{width:100%;height:100%;object-fit:cover;display:block}
+@keyframes xmq{to{transform:translateX(calc(-50% - 1.5px))}}
+@media(prefers-reduced-motion:reduce){.xmt{animation:none}.xmq{overflow-x:auto}}
+.xback{background:none;border:0;font-family:'DM Mono',monospace;font-size:.58rem;letter-spacing:.2em;text-transform:uppercase;color:var(--or);padding:.3rem 0;margin-top:1.4rem;cursor:pointer;transition:opacity .3s}
+.xback:hover{opacity:.65}
+.xdet .xsh{margin-top:1.2rem}
+.xlb{position:relative;background:var(--bg)}
+.xn{position:absolute;top:50%;transform:translateY(-50%);width:42px;height:42px;background:rgba(0,0,0,.45);border:1px solid var(--fi);color:var(--or);font-size:1.6rem;line-height:1;cursor:pointer;display:flex;align-items:center;justify-content:center;transition:all .3s}
+.xn:hover{background:var(--or);color:var(--bg)}
+.xn.pv{left:.6rem}
+.xn.nx{right:.6rem}
+.xvid{display:block;margin:0 auto;max-width:100%;max-height:72vh;background:#000}
+.xpm{max-width:100%;max-height:calc(100vh - 240px);display:block;margin:0 auto}
+.xr{display:grid;grid-template-columns:repeat(4,1fr);gap:3px;margin-top:1.4rem}
+.xrc{background:var(--bg2);aspect-ratio:9/14;position:relative;overflow:hidden;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:.7rem;transition:background .3s}
+.xrc.play{cursor:pointer}
+.xrc.play:hover{background:var(--bg3)}
+.xrc img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover}
+.xrt{position:absolute;top:1rem;left:1rem;font-family:'DM Mono',monospace;font-size:.5rem;letter-spacing:.18em;text-transform:uppercase;color:var(--or);border:1px solid var(--or);padding:.22rem .55rem;background:rgba(26,10,13,.6)}
+.xrp{width:46px;height:46px;border:1px solid var(--or);border-radius:50%;display:flex;align-items:center;justify-content:center;color:var(--or);position:relative}
+.xrs{font-family:'DM Mono',monospace;font-size:.52rem;letter-spacing:.18em;text-transform:uppercase;color:var(--bg4);position:relative}
+.xrn{position:absolute;left:1rem;right:1rem;bottom:1rem;font-size:1rem;font-weight:700;color:var(--tx)}
+.xfoot{padding:2rem 4rem 6rem;display:grid;grid-template-columns:1fr 1fr;gap:7rem;align-items:start}
+.clka.off{opacity:.45;cursor:default}
+.clka.off:hover{color:var(--tx);padding-left:0}
+.clka.off:hover span{color:var(--bg4)}
+.xcta{margin-top:1.4rem}
+
 /* FOOTER */
 footer{background:var(--bg);padding:2rem 4rem;display:flex;justify-content:space-between;align-items:center;border-top:1px solid rgba(200,160,80,.08)}
 footer p{font-family:'DM Mono',monospace;font-size:.53rem;letter-spacing:.18em;text-transform:uppercase;color:var(--bg4)}
@@ -198,13 +281,29 @@ footer p{font-family:'DM Mono',monospace;font-size:.53rem;letter-spacing:.18em;t
   .af{display:none}
   footer{flex-direction:column;gap:.5rem;text-align:center;padding:1.5rem}
   .fq{display:none}
+  .xh,.xsv,.xsec,.xfoot{padding-left:1.5rem;padding-right:1.5rem}
+  .xsv{grid-template-columns:1fr}
+  .xr{grid-template-columns:repeat(2,1fr)}
+  .xg{display:grid;grid-template-columns:1fr 1fr}
+  .xb{display:contents}
+  .xpc{grid-area:auto;aspect-ratio:2/3}
+  .xpc.mw{grid-column:span 2;aspect-ratio:4/3}
+  .xpc.mw img{object-position:50% var(--lp)}
+  .xpc.xt img{object-position:50% 40%}
+  .xsh h3{font-size:1.35rem}
+  .xpv{height:140px}
+  .xsh .xall{display:none}
+  .xfoot{grid-template-columns:1fr;gap:2.5rem}
 }
 </style>
 </head>
 <body>
 
 <nav>
-  <span class="logo" id="nl">Daphnée Levy</span>
+  <div class="lw">
+    <span class="logo" id="nl">Daphnée Levy</span>
+    <a class="bfopt" data-p="annex">Blondie Films</a>
+  </div>
   <ul class="nav-links">
     <li><a data-p="home" class="on">Home</a></li>
     <li><a data-p="works">Works</a></li>
@@ -218,6 +317,7 @@ footer p{font-family:'DM Mono',monospace;font-size:.53rem;letter-spacing:.18em;t
   <a data-pm="home">Home</a>
   <a data-pm="works">Works</a>
   <a data-pm="about">About</a>
+  <a data-pm="annex">Blondie Films</a>
   <a data-pm="contact">Contact</a>
 </div>
 
@@ -385,6 +485,55 @@ footer p{font-family:'DM Mono',monospace;font-size:.53rem;letter-spacing:.18em;t
 </div>
 </div>
 
+<!-- ANNEX -->
+<div id="pg-annex" class="pg">
+  <div class="xh rv">
+    <div class="stag">by Daphn&eacute;e Levy</div>
+    <h1><em>Blondie</em> Films</h1>
+    <p>Freelance video &amp; social content. Cinematic video for artists, venues and brands &mdash; concerts, live events and social-first content, with the eye of a filmmaker.</p>
+  </div>
+
+  <div class="xsv">
+    <div class="xcard rv">
+      <div class="xn">01</div>
+      <h3>Concert &amp; Live</h3>
+      <p>Capturing the energy of a live moment with a cinematic eye.</p>
+    </div>
+    <div class="xcard rv d1">
+      <div class="xn">02</div>
+      <h3>Social-first content</h3>
+      <p>Vertical, short-form videos made for Instagram, TikTok and YouTube Shorts.</p>
+    </div>
+    <div class="xcard rv d2">
+      <div class="xn">03</div>
+      <h3>Cinematic stories</h3>
+      <p>Music videos, teasers and brand films with a narrative approach.</p>
+    </div>
+  </div>
+
+  <div class="xsec rv">
+    <div class="stag">Selected work</div>
+    <div class="xf" id="xf"></div>
+    <div class="xr" id="xr"></div>
+    <div class="xp" id="xp" style="display:none"></div>
+  </div>
+
+  <div class="xfoot">
+    <div class="rv">
+      <div class="stag">Follow the work</div>
+      <div class="clk" id="xsoc"></div>
+    </div>
+    <div class="rv d1">
+      <div class="ic2">
+        <div class="ic2i"><div class="ic2l">Focus</div><div class="ic2v">Concerts · Live events · Social content</div></div>
+        <div class="ic2i"><div class="ic2l">Based in</div><div class="ic2v">Paris, France</div></div>
+        <div class="ic2i"><div class="ic2l">Availability</div><div class="ic2v">Open to new projects</div></div>
+      </div>
+      <button class="btn bs xcta" id="xc">Let's talk &rarr;</button>
+    </div>
+  </div>
+</div>
+
 <!-- CONTACT -->
 <div id="pg-contact" class="pg">
   <div class="cw">
@@ -411,7 +560,7 @@ footer p{font-family:'DM Mono',monospace;font-size:.53rem;letter-spacing:.18em;t
 
 <script data-cfasync="false">
 document.addEventListener("DOMContentLoaded", function() {
-var PAGES = ['home','works','about','contact'];
+var PAGES = ['home','works','about','annex','contact'];
 var projects = {
   1:{title:'"L\'Étoile Rose"',role:'Script Supervisor',year:'2026',type:'Short film',dir:'Albert Joffo',award:'Nikon FF 2026',desc:'Short film directed by Albert Joffo.',video:{type:'youtube',videoId:'j_OveGDZqno'}},
   2:{title:'"À quel prix"',role:'Script Supervisor',year:'2026',type:'Short film',dir:'Aurore Knol',award:'Nikon FF 2026',desc:'Short film directed by Aurore Knol.',video:{type:'youtube',videoId:'0dM2BynV8CU'}},
@@ -431,6 +580,7 @@ function goTo(name) {
   document.querySelectorAll('[data-p]').forEach(function(a) {
     a.classList.toggle('on', a.getAttribute('data-p')===name);
   });
+  document.body.classList.toggle('bf', name==='annex');
   window.scrollTo(0,0);
   document.querySelectorAll('#pg-'+name+' .rv').forEach(function(el) {
     el.classList.add('vis');
@@ -508,6 +658,221 @@ document.getElementById('mo').addEventListener('click', function(e) {
 // Filmstrip
 var fs = document.getElementById('fs');
 for(var i=0;i<32;i++) { var h=document.createElement('div'); h.className='fh'; fs.appendChild(h); }
+
+// ANNEX — edit socials and reels below to update the page
+// socials: add the full profile URL ('' = shown as "Soon", not clickable)
+var socials = [
+  {name:'Instagram', url:''},
+  {name:'TikTok', url:''},
+  {name:'YouTube', url:''},
+  {name:'LinkedIn', url:'https://www.linkedin.com/in/daphnee-levy-4895b0242/'}
+];
+// reels: video = {type:'youtube'|'vimeo', videoId:'...'} or {type:'file', src:'videos/x.mp4'}; thumb = optional image URL
+// cat: 'social' | 'sports' | 'artsy'
+var reels = [
+  {cat:'sports', tag:'Sports', title:'Valeria Spinning 500', video:{type:'file', src:'videos/valeria-spinning-500.mp4'}, thumb:'videos/valeria-spinning-500.jpg'},
+  {cat:'sports', tag:'Sports', title:'Are You Ready', video:{type:'file', src:'videos/are-you-ready.mp4'}, thumb:'videos/are-you-ready.jpg'},
+  {cat:'sports', tag:'Sports', title:'Modo Athletics Session', video:{type:'file', src:'videos/modo-athletics-session.mp4'}, thumb:'videos/modo-athletics-session.jpg'},
+  {cat:'artsy', tag:'Artsy', title:'Au Charme Clandestin', video:{type:'file', src:'videos/au-charme-clandestin.mp4'}, thumb:'videos/au-charme-clandestin.jpg'},
+  {cat:'social', tag:'Social', title:'Short-form reel', video:null},
+  {cat:'social', tag:'Social', title:'Brand content', video:null}
+];
+// shoots: dir = dossier (NN.jpg = grande, t/NN.jpg = vignette). f = point focal par photo [recadrage paysage %, recadrage haut %]
+var shoots = [{"title": "Aneel Photoshoot", "dir": "photos/aneel-photoshoot", "f": [[34, 50], [34, 50], [34, 50], [34, 50], [34, 50], [34, 50], [17, 48], [34, 50], [34, 50], [34, 50], [54, 20], [34, 50], [34, 50], [34, 50], [34, 50], [34, 50], [34, 50], [34, 50], [34, 50], [34, 50]]}, {"title": "Levana Photoshoot", "dir": "photos/levana-photoshoot", "f": [[33, 48], [17, 40], [34, 50], [34, 50], [34, 50], [34, 50], [34, 50], [34, 50], [34, 50], [16, 70], [34, 50], [34, 50], [34, 50], [34, 50], [47, 57], [34, 50], [31, 45], [34, 50]]}, {"title": "Modo Athletics Session", "dir": "photos/modo-athletics-session", "f": [[25, 60], [36, 50], [36, 50], [36, 50], [28, 35], [36, 50], [28, 20], [36, 50], [36, 50], [34, 64], [36, 50], [25, 51], [36, 50], [26, 33], [14, 20], [36, 50], [36, 50], [36, 50], [14, 65], [28, 54], [36, 50], [31, 55]]}];
+
+var xsoc = document.getElementById('xsoc');
+socials.forEach(function(s) {
+  var el, tag = document.createElement('span');
+  if(s.url) {
+    el = document.createElement('a');
+    el.href = s.url; el.target = '_blank'; el.rel = 'noopener';
+    el.className = 'clka';
+    tag.textContent = 'Follow \u2192';
+  } else {
+    el = document.createElement('div');
+    el.className = 'clka off';
+    tag.textContent = 'Soon';
+  }
+  el.appendChild(document.createTextNode(s.name));
+  el.appendChild(tag);
+  xsoc.appendChild(el);
+});
+
+var xr = document.getElementById('xr');
+function renderReels(f) {
+xr.innerHTML = '';
+reels.forEach(function(r) {
+  if(f!=='all' && r.cat!==f) return;
+  var c = document.createElement('div');
+  c.className = 'xrc' + (r.video ? ' play' : '');
+  var html = '';
+  if(r.thumb) html += '<img src="'+r.thumb+'" alt="'+r.title+'" loading="lazy"/>';
+  if(r.video) {
+    html += '<div class="xrp"><svg width="14" height="14" viewBox="0 0 14 14" fill="currentColor"><polygon points="3,1 13,7 3,13"/></svg></div><div class="xrn">'+r.title+'</div>';
+  } else {
+    html += '<div class="xrp"><svg width="14" height="14" viewBox="0 0 14 14" fill="currentColor"><polygon points="3,1 13,7 3,13"/></svg></div><span class="xrs">Reel coming soon</span>';
+  }
+  c.innerHTML = html;
+  if(r.video) {
+    c.addEventListener('click', function() {
+      if(r.video.type==='file') {
+        document.getElementById('mmedia').innerHTML = '<video class="xvid" src="'+r.video.src+'" controls autoplay playsinline></video>';
+      } else {
+      var src = r.video.type==='vimeo'
+        ? 'https://player.vimeo.com/video/'+r.video.videoId+'?autoplay=1'
+        : 'https://www.youtube.com/embed/'+r.video.videoId+'?autoplay=1';
+      document.getElementById('mmedia').innerHTML = '<div class="mv"><iframe src="'+src+'" allow="autoplay; fullscreen" allowfullscreen></iframe></div>';
+      }
+      document.getElementById('mtitle').textContent = r.title;
+      document.getElementById('mrole').textContent = 'Freelance video';
+      document.getElementById('mdesc').textContent = r.desc || '';
+      document.getElementById('mmeta').innerHTML = '<div class="mmi"><span>Type</span><p>'+r.tag+'</p></div>';
+      document.getElementById('mo').classList.add('open');
+    });
+  }
+  xr.appendChild(c);
+});
+}
+renderReels('all');
+
+var xp = document.getElementById('xp');
+// mosaique: chaque bloc = grille 4 colonnes x 6 rangees ; [ligne debut, col debut, ligne fin, col fin, forme] (q portrait, l paysage, t tout en hauteur)
+var LAY = {
+  p3:[[1,1,7,3,'q'],[1,3,4,5,'l'],[4,3,7,5,'l']],
+  p3m:[[1,3,7,5,'q'],[1,1,4,3,'l'],[4,1,7,3,'l']],
+  p4:[[1,1,7,3,'q'],[1,3,4,5,'l'],[4,3,7,4,'q'],[4,4,7,5,'q']],
+  p4m:[[1,3,7,5,'q'],[1,1,4,3,'l'],[4,1,7,2,'q'],[4,2,7,3,'q']],
+  p5:[[1,1,4,2,'q'],[1,2,4,4,'l'],[1,4,7,5,'t'],[4,1,7,2,'q'],[4,2,7,4,'l']],
+  p5m:[[1,4,4,5,'q'],[1,2,4,4,'l'],[1,1,7,2,'t'],[4,4,7,5,'q'],[4,2,7,4,'l']],
+  p6:[[1,1,4,2,'q'],[1,2,4,3,'q'],[1,3,4,5,'l'],[4,1,7,3,'l'],[4,3,7,4,'q'],[4,4,7,5,'q']],
+  p6m:[[1,4,4,5,'q'],[1,3,4,4,'q'],[1,1,4,3,'l'],[4,3,7,5,'l'],[4,2,7,3,'q'],[4,1,7,2,'q']]
+};
+function plan(n) {
+  var sz = {p3:3,p4:4,p5:5,p6:6}, cyc = ['p4','p6','p3','p5'];
+  function go(rem, k) {
+    if(rem === 0) return [];
+    for(var j=0; j<4; j++) {
+      var key = cyc[(k+j)%4];
+      if(sz[key] > rem) continue;
+      var rest = go(rem - sz[key], k+j+1);
+      if(rest) return [key].concat(rest);
+    }
+    return null;
+  }
+  return go(n, 0) || [];
+}
+
+var lb = {list:null, i:0, title:''};
+function lbRender() {
+  var p = lb.list[lb.i], m = document.getElementById('mmedia');
+  m.innerHTML = '<div class="xlb"><img class="xpm" alt=""/><button class="xn pv" aria-label="Previous">&#8249;</button><button class="xn nx" aria-label="Next">&#8250;</button></div>';
+  m.querySelector('.xpm').src = p.full;
+  m.querySelector('.pv').onclick = function(e) { e.stopPropagation(); lbStep(-1); };
+  m.querySelector('.nx').onclick = function(e) { e.stopPropagation(); lbStep(1); };
+  document.getElementById('mtitle').textContent = lb.title;
+  document.getElementById('mrole').textContent = (lb.i+1) + ' / ' + lb.list.length;
+  document.getElementById('mdesc').textContent = '';
+  document.getElementById('mmeta').innerHTML = '';
+  [1,-1].forEach(function(d) { new Image().src = lb.list[(lb.i+d+lb.list.length) % lb.list.length].full; });
+}
+function lbStep(d) { lb.i = (lb.i + d + lb.list.length) % lb.list.length; lbRender(); }
+function openPhoto(list, i, title) {
+  lb.list = list; lb.i = i; lb.title = title; lbRender();
+  document.getElementById('mo').classList.add('open');
+}
+document.addEventListener('keydown', function(e) {
+  if(!document.getElementById('mo').classList.contains('open') || !document.querySelector('#mmedia .xpm')) return;
+  if(e.key === 'ArrowRight') lbStep(1); else if(e.key === 'ArrowLeft') lbStep(-1);
+});
+(function() {
+  var x0 = null, m = document.getElementById('mmedia');
+  m.addEventListener('touchstart', function(e) { x0 = e.touches[0].clientX; }, {passive:true});
+  m.addEventListener('touchend', function(e) {
+    if(x0 === null || !m.querySelector('.xpm')) return;
+    var dx = e.changedTouches[0].clientX - x0; x0 = null;
+    if(Math.abs(dx) > 50) lbStep(dx < 0 ? 1 : -1);
+  });
+})();
+
+function buildMosaic(s) {
+  var list = s.f.map(function(f, i) {
+    var n = ('0' + (i+1)).slice(-2);
+    return {full: s.dir + '/' + n + '.jpg', thumb: s.dir + '/t/' + n + '.jpg', lp: f[0], tp: f[1]};
+  });
+  var g = document.createElement('div'); g.className = 'xg';
+  var idx = 0;
+  plan(list.length).forEach(function(key, b) {
+    var lay = LAY[key + (b%2 ? 'm' : '')], blk = document.createElement('div');
+    blk.className = 'xb';
+    lay.forEach(function(a) {
+      var i = idx++, p = list[i], c = document.createElement('div');
+      c.className = 'xpc x' + a[4] + (i%3 === 2 ? ' mw' : '');
+      c.style.setProperty('--ga', a[0]+'/'+a[1]+'/'+a[2]+'/'+a[3]);
+      c.style.setProperty('--lp', p.lp + '%');
+      c.style.setProperty('--tp', p.tp + '%');
+      c.setAttribute('role', 'button'); c.tabIndex = 0;
+      var im = document.createElement('img');
+      im.src = p.thumb; im.alt = s.title + ' \u2014 photo ' + (i+1); im.loading = 'lazy'; im.decoding = 'async';
+      c.appendChild(im);
+      c.addEventListener('click', function() { openPhoto(list, i, s.title); });
+      c.addEventListener('keydown', function(e) { if(e.key === 'Enter' || e.key === ' ') { e.preventDefault(); openPhoto(list, i, s.title); } });
+      blk.appendChild(c);
+    });
+    g.appendChild(blk);
+  });
+  return g;
+}
+var xcards = document.createElement('div'); xcards.className = 'xscs';
+var xdet = document.createElement('div'); xdet.className = 'xdet'; xdet.style.display = 'none';
+xp.appendChild(xcards); xp.appendChild(xdet);
+function showCards() { xdet.style.display = 'none'; xdet.innerHTML = ''; xcards.style.display = ''; }
+function showShoot(s) {
+  xdet.innerHTML = '<button class="xback">&#8592; All shoots</button><div class="xsh"><h3></h3><span></span></div>';
+  xdet.querySelector('h3').textContent = s.title;
+  xdet.querySelector('span').textContent = s.f.length + ' photos';
+  xdet.querySelector('.xback').addEventListener('click', function() {
+    showCards(); document.getElementById('xf').scrollIntoView({behavior:'smooth', block:'start'});
+  });
+  xdet.appendChild(buildMosaic(s));
+  xcards.style.display = 'none'; xdet.style.display = '';
+  document.getElementById('xf').scrollIntoView({behavior:'smooth', block:'start'});
+}
+shoots.forEach(function(s) {
+  var card = document.createElement('div'); card.className = 'xs xsc';
+  card.setAttribute('role', 'button'); card.tabIndex = 0;
+  card.innerHTML = '<div class="xsh"><h3></h3><span></span><em class="xall">View all &#8594;</em></div><div class="xmq"><div class="xmt"></div></div>';
+  card.querySelector('h3').textContent = s.title;
+  card.querySelector('span').textContent = s.f.length + ' photos';
+  var n = s.f.length, pick = [], tr = card.querySelector('.xmt');
+  for(var k=0; k<10; k++) pick.push(Math.floor(k*n/10));
+  pick.concat(pick).forEach(function(k) {
+    var d = document.createElement('div'); d.className = 'xpv';
+    var im = document.createElement('img');
+    im.src = s.dir + '/pv/' + ('0' + (k+1)).slice(-2) + '.jpg'; im.alt = ''; im.decoding = 'async';
+    d.appendChild(im); tr.appendChild(d);
+  });
+  card.addEventListener('click', function() { showShoot(s); });
+  card.addEventListener('keydown', function(e) { if(e.key === 'Enter' || e.key === ' ') { e.preventDefault(); showShoot(s); } });
+  xcards.appendChild(card);
+});
+
+var xf = document.getElementById('xf');
+[['all','All'],['social','Social'],['sports','Sports'],['artsy','Artsy'],['photos','Photos']].forEach(function(f, i) {
+  var b = document.createElement('button');
+  b.className = 'xfb' + (i===0 ? ' on' : '');
+  b.textContent = f[1];
+  b.addEventListener('click', function() {
+    xf.querySelectorAll('.xfb').forEach(function(x) { x.classList.remove('on'); });
+    b.classList.add('on');
+    var ph = f[0]==='photos';
+    xr.style.display = ph ? 'none' : '';
+    xp.style.display = ph ? '' : 'none';
+    if(ph) showCards();
+    if(!ph) renderReels(f[0]);
+  });
+  xf.appendChild(b);
+});
+document.getElementById('xc').addEventListener('click', function() { goTo('contact'); });
 
 // Init reveals — force visible sur home, observer sur le reste
 document.querySelectorAll('#pg-home .rv').forEach(function(el) { el.classList.add('vis'); });
