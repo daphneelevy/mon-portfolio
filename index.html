@@ -576,7 +576,9 @@ var projects = {
   9:{title:'"Parle"',role:'Script Supervisor',year:'2025',type:'Short film',dir:'Clara Fortuné',award:'',desc:'Short film directed by Clara Fortuné.',video:{type:'vimeo',videoId:'1123477119'}}
 };
 
-function goTo(name) {
+var HOME_TITLE = document.title;
+var BF_PATH = '/blondie-films';
+function goTo(name, noPush) {
   PAGES.forEach(function(p) {
     document.getElementById('pg-'+p).style.display = (p===name)?'block':'none';
   });
@@ -584,6 +586,8 @@ function goTo(name) {
     a.classList.toggle('on', a.getAttribute('data-p')===name);
   });
   document.body.classList.toggle('bf', name==='annex');
+  document.title = (name==='annex') ? 'Blondie Films by Daphn\u00e9e Levy \u2014 Cinematic video, concerts, live events, sport & art' : HOME_TITLE;
+  if(!noPush) { try { var want = (name==='annex') ? BF_PATH : '/'; if(location.pathname.replace(/\/$/,'') !== want.replace(/\/$/,'')) history.pushState({p:name}, '', want); } catch(err) {} }
   window.scrollTo(0,0);
   document.querySelectorAll('#pg-'+name+' .rv').forEach(function(el) {
     el.classList.add('vis');
@@ -891,6 +895,8 @@ document.querySelectorAll('.rv').forEach(function(el) {
   var a=document.getElementById('em-link');
   if(a){ a.href='mai'+'lto:'+e; document.getElementById('em-txt').textContent=e; }
 })();
+window.addEventListener('popstate', function() { goTo(location.pathname.indexOf(BF_PATH)===0 ? 'annex' : 'home', true); });
+if(location.pathname.indexOf(BF_PATH)===0) { goTo('annex', true); }
 }); // end
 </script>
 <footer style="text-align:center;padding:2rem;font-family:'DM Mono',monospace;font-size:0.7rem;color:var(--mx);border-top:1px solid var(--fi);letter-spacing:0.08em;">

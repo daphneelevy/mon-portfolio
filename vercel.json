@@ -1,4 +1,8 @@
 {
+  "trailingSlash": false,
+  "rewrites": [
+    { "source": "/blondie-films", "destination": "/index.html" }
+  ],
   "headers": [
     {
       "source": "/(.*)",
