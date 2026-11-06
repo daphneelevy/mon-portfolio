@@ -806,10 +806,10 @@ function makePlayer(host, spec) {
       var d = document.createElement('div'); stage.appendChild(d);
       var p = new YT.Player(d, {
         videoId: spec.id,
-        playerVars: {autoplay:1, controls:0, rel:0, modestbranding:1, playsinline:1, iv_load_policy:3, disablekb:1, fs:0},
+        playerVars: {autoplay:1, controls:0, rel:0, modestbranding:1, playsinline:1, iv_load_policy:3, disablekb:1, fs:0, cc_load_policy:0},
         events: {
-          onReady: function(e) { ready(); try { e.target.playVideo(); } catch(x) {} },
-          onStateChange: function(e) { if(e.data === 0) { p.seekTo(0, true); p.pauseVideo(); } },
+          onReady: function(e) { ready(); try { e.target.unloadModule('captions'); e.target.unloadModule('cc'); } catch(x) {} try { e.target.playVideo(); } catch(x) {} },
+          onStateChange: function(e) { if(e.data === 0) { p.seekTo(0, true); p.pauseVideo(); } else if(e.data === 1) { try { p.unloadModule('captions'); p.unloadModule('cc'); } catch(x) {} } },
           onError: function() { fallback(); }
         }
       });
@@ -833,7 +833,7 @@ function makePlayer(host, spec) {
       f.src = 'https://player.vimeo.com/video/' + spec.id + '?autoplay=1&controls=0&title=0&byline=0&portrait=0&dnt=1&playsinline=1';
       f.allow = 'autoplay; fullscreen'; stage.appendChild(f);
       var p = new Vimeo.Player(f), nop = function() {};
-      p.ready().then(function() { ready(); p.getDuration().then(function(d) { st.dur = d; }, nop); p.play().catch(nop); }, fallback);
+      p.ready().then(function() { ready(); p.disableTextTrack().catch(nop); p.getDuration().then(function(d) { st.dur = d; }, nop); p.play().catch(nop); }, fallback);
       p.on('timeupdate', function(e) { st.cur = e.seconds; st.dur = e.duration; });
       p.on('play', function() { st.playing = true; });
       p.on('pause', function() { st.playing = false; });
